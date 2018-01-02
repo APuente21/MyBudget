@@ -1,2 +1,5 @@
-C:\Users\andre\OneDrive\MyBudget\src\main\java\com\twilio\SendSms.java
-C:\Users\andre\OneDrive\MyBudget\src\main\java\com\twilio\ReceiveSms.java
+C:\Users\andre\OneDrive\MyBudget\src\main\java\com\budget\twilio\ReceiveSms.java
+C:\Users\andre\OneDrive\MyBudget\src\main\java\com\budget\domain\BudgetEntry.java
+C:\Users\andre\OneDrive\MyBudget\src\main\java\com\budget\domain\Categories.java
+C:\Users\andre\OneDrive\MyBudget\src\main\java\com\budget\domain\Users.java
+C:\Users\andre\OneDrive\MyBudget\src\main\java\com\budget\twilio\SendSms.java

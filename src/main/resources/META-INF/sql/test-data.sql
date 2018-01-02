@@ -1,5 +1,5 @@
 
-insert into BOOK (category_name, isbn, title, publisher, price) values ('Design Patters', '0201633612', 'Design Patterns: Elements of Reusable Object-Oriented Software', 'Addison-Wesley', '48.31');
+insert into CATEGORIES (category_name, isbn, title, publisher, price) values ('Design Patters', '0201633612', 'Design Patterns: Elements of Reusable Object-Oriented Software', 'Addison-Wesley', '48.31');
 insert into BOOK (category_name, isbn, title, publisher, price) values ('Design Patters', '1449331491', 'Head First Design Patterns: A Brain-Friendly Guide', 'Reilly Media, Inc', '40.79');
 insert into BOOK (category_name, isbn, title, publisher, price) values ('Java', '0596552440', 'Hardcore Java', 'Reilly Media, Inc.', '17.27');
 insert into BOOK (category_name, isbn, title, publisher, price) values ('Java', '0071808566', 'Java: The Complete Reference, Ninth Edition', 'McGraw-Hill Education', '36.14');

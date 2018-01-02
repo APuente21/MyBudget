@@ -1,2 +1,5 @@
-com\twilio\ReceiveSms.class
-com\twilio\SendSms.class
+com\budget\domain\Users.class
+com\budget\twilio\ReceiveSms.class
+com\budget\domain\Categories.class
+com\budget\twilio\SendSms.class
+com\budget\domain\BudgetEntry.class
