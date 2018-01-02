@@ -1,0 +1,15 @@
+package com.twilio;
+
+import static spark.Spark.post;
+import com.twilio.twiml.Body;
+import com.twilio.twiml.Message;
+import com.twilio.twiml.MessagingResponse;
+
+public class ReceiveSms {
+	public static void main (String [] args) {
+
+				
+		
+	}
+}
+
