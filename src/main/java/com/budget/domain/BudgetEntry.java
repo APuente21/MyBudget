@@ -8,14 +8,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@NamedQueries({
+@NamedQuery(name="BudgetEntry.findEntriesByUser", 
+query="select distinct b from BudgetEntry b left join fetch b.category c where b.user = :id")
+})
 @Table(name = "BUDGET_ENTRIES")
 public class BudgetEntry {
 	private long id;
+	private long user_id;
 	private User user;
 	private Category category;
 	private long amount;
@@ -39,6 +46,7 @@ public class BudgetEntry {
 	}
 	
 	public void setUser(User user) {
+		this.user_id = user.getId();
 		this.user = user;
 	}
 	

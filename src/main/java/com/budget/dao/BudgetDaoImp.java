@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import com.budget.domain.BudgetEntry;
+import com.budget.domain.User;
 
 @Transactional 
 @Repository("budgetDao")
@@ -16,8 +17,26 @@ public class BudgetDaoImp implements BudgetDao {
 	@SuppressWarnings("unchecked")
     @Transactional(readOnly=true)
 	public List<BudgetEntry> findAllEntries() {
-		List<BudgetEntry> test = sessionFactory.getCurrentSession().createQuery("from  BudgetEntry b").list();
-		return test;
+		return sessionFactory.getCurrentSession().createQuery("from  BudgetEntry b").list();
+	}
+	
+	@SuppressWarnings("unchecked")
+    @Transactional(readOnly=true)
+	public User findUser(String email, String password) {
+		return (User) sessionFactory.getCurrentSession()
+                .getNamedQuery("User.findUser")
+                .setParameter("email", email)
+                .setParameter("password", password)
+                .uniqueResult();
+	}
+	
+	@SuppressWarnings("unchecked")
+    @Transactional(readOnly=true)
+	public List<BudgetEntry> findEntriesByUser(long id) {
+		return sessionFactory.getCurrentSession()
+                .getNamedQuery("BudgetEntry.findEntriesByUser")
+                .setParameter("id", id)
+                .list();
 	}
 	
     public SessionFactory getSessionFactory() {
