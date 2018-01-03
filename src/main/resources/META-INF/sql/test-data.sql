@@ -1,15 +1,25 @@
 
-insert into CATEGORIES (category_name, isbn, title, publisher, price) values ('Design Patters', '0201633612', 'Design Patterns: Elements of Reusable Object-Oriented Software', 'Addison-Wesley', '48.31');
-insert into BOOK (category_name, isbn, title, publisher, price) values ('Design Patters', '1449331491', 'Head First Design Patterns: A Brain-Friendly Guide', 'Reilly Media, Inc', '40.79');
-insert into BOOK (category_name, isbn, title, publisher, price) values ('Java', '0596552440', 'Hardcore Java', 'Reilly Media, Inc.', '17.27');
-insert into BOOK (category_name, isbn, title, publisher, price) values ('Java', '0071808566', 'Java: The Complete Reference, Ninth Edition', 'McGraw-Hill Education', '36.14');
-insert into BOOK (category_name, isbn, title, publisher, price) values ('Scala', '1498759688', 'Introduction to the Art of Programming Using Scala', 'CRC Press', '70.36');
-insert into BOOK (category_name, isbn, title, publisher, price) values ('Spring Framework', '1430265337', 'Introducing Spring Framework: A Primer', 'BookBaby', '31.72');
-insert into BOOK (category_name, isbn, title, publisher, price) values ('Spring Framework', '1847195431', 'Spring Web Flow 2 Web Development', 'Packt Publishing Ltd', '14.59');
-insert into BOOK (category_name, isbn, title, publisher, price) values ('Fiction', '0812511816', 'The Eye of the World', 'Tor Fantasy', '7.67');
-insert into BOOK (category_name, isbn, title, publisher, price) values ('Fiction', '0812517725', 'The Great Hunt', 'Tor Fantasy', '9.99');
-insert into BOOK (category_name, isbn, title, publisher, price) values ('Fiction', '0812513711', 'The Dragon Reborn', 'Tor Fantasy', '7.14');
-insert into BOOK (category_name, isbn, title, publisher, price) values ('Fiction', '0812513738', 'The Shadow Rising', 'Tor Fantasy', '7.90');
-insert into BOOK (category_name, isbn, title, publisher, price) values ('Fiction', '0812513754', 'Lord of Chaos', 'Tor Fantasy', '9.99');
-insert into BOOK (category_name, isbn, title, publisher, price) values ('Fiction', '0812550285', 'A Crown of Swords', 'Tor Fantasy', '7.09');
-insert into BOOK (category_name, isbn, title, publisher, price) values ('Fiction', '0812571339', 'Crossroads of Twilight', 'Tor Fantasy', '8.73');
+insert into CATEGORIES (name) values ('Dinning');
+insert into CATEGORIES (name) values ('Travel');
+insert into CATEGORIES (name) values ('Entertainment');
+insert into CATEGORIES (name) values ('Car');
+insert into CATEGORIES (name) values ('Health');
+
+insert into USERS (first_name, last_name, email, password, phone_number) values ('Andres', 'Bravo', 'abrovo@gmail.com', 'brabopass', '19176769666');
+insert into USERS (first_name, last_name, email, password, phone_number) values ('Brian', 'Porter', 'bporter@gmail.com', 'porterpass', '12122786659');
+insert into USERS (first_name, last_name, email, password, phone_number) values ('Meladie', 'Gardout', 'mgardout@gmail.com', 'gardoutpass', '12122789676');
+insert into USERS (first_name, last_name, email, password, phone_number) values ('Chris', 'Pine', 'cpine@gmail.com', 'pinepass', '16469861253');
+insert into USERS (first_name, last_name, email, password, phone_number) values ('Armie', 'Hammer', 'ahammer@gmail.com', 'hammerpass', '12128563125');
+
+insert into BUDGET_ENTRIES(user_id, category_id, amount, entry_date) values(1,3,500,'2017-10-26');
+insert into BUDGET_ENTRIES(user_id, category_id, amount, entry_date) values(3,2,50,'2017-10-25');
+insert into BUDGET_ENTRIES(user_id, category_id, amount, entry_date) values(2,4,250,'2017-10-24');
+insert into BUDGET_ENTRIES(user_id, category_id, amount, entry_date) values(4,1,10,'2017-10-01');
+insert into BUDGET_ENTRIES(user_id, category_id, amount, entry_date) values(1,5,5000,'2017-10-13');
+insert into BUDGET_ENTRIES(user_id, category_id, amount, entry_date) values(5,1,5250,'2017-10-02');
+insert into BUDGET_ENTRIES(user_id, category_id, amount, entry_date) values(5,1,120,'2017-10-30');
+insert into BUDGET_ENTRIES(user_id, category_id, amount, entry_date) values(1,2,30,'2017-10-10');
+insert into BUDGET_ENTRIES(user_id, category_id, amount, entry_date) values(2,3,870,'2017-10-05');
+insert into BUDGET_ENTRIES(user_id, category_id, amount, entry_date) values(1,3,220,'2017-10-26');
+insert into BUDGET_ENTRIES(user_id, category_id, amount, entry_date) values(4,4,1000,'2017-10-26');
+

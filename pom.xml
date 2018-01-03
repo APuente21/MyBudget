@@ -15,6 +15,17 @@
 
     <dependencies>
         <!-- Spring -->
+              <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-orm</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+            <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-context-support</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+        
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -36,7 +47,7 @@
 		<dependency>
     		<groupId>org.hibernate</groupId>
     		<artifactId>hibernate-entitymanager</artifactId>
-    		<version>5.2.12.Final</version>
+    		<version>4.2.11.Final</version>
 		</dependency>
 		
 		
@@ -75,6 +86,35 @@
 		</dependency>
     </dependencies>
   
+     <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.7.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>com.puente.app.FindAllBooks</mainClass>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>dependency/</classpathPrefix>
+            </manifest>
+            <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>  
+  <!--
   	<build>
       <finalName>MyBudget</finalName>
       <plugins>
@@ -93,6 +133,7 @@
         </plugin>
       </plugins>
   </build>
+  -->
 </project>
 
 
