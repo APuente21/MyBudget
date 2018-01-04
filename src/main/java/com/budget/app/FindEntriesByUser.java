@@ -30,7 +30,7 @@ public class FindEntriesByUser {
         String password = "gardoutpass";
         User user = bDao.findUser(email, password);
         
-        List<BudgetEntry> entries = bDao.findEntriesByUser(user.getId());
+        List<BudgetEntry> entries = bDao.findEntriesByUser(user.getId());  
         listBooks(entries);
     }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
     
