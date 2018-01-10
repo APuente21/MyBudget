@@ -2,49 +2,46 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-        http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+        http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+        metadata-complete="true">
 
+    <!-- 7. We need to configure:
+         • the root WebApplicationContext in contextConfigLocation.
+		 • the servlet filters required by Spring MVC
+		 • the dispatcher servlets within the application
+		 
+		 The main points for configurations below are:
+			• In the <web-app> tag, the version attribute and the corresponding 
+			   URL are used to indicate to the web container that the web application will use Servlet 3.0.
+			• In the <context-param> tag, the contextConfigLocation param is provided, 
+			  which defines the location of Spring’s root WebApplicationContext configuration file. 
+    -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/spring/root-context.xml</param-value>
     </context-param>
 
-    <filter>
-        <filter-name>CharacterEncodingFilter</filter-name>
-        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-        <init-param>
-            <param-name>forceEncoding</param-name>
-            <param-value>true</param-value>
-        </init-param>
-    </filter>
-
-    <filter>
-        <filter-name>HttpMethodFilter</filter-name>
-        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
-    </filter>
-    <filter>
-        <filter-name>Spring OpenEntityManagerInViewFilter</filter-name>
-        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
-    </filter>
     
-    <filter-mapping>
-        <filter-name>CharacterEncodingFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>HttpMethodFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-    <filter-mapping>
-        <filter-name>Spring OpenEntityManagerInViewFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    <!-- A listener of class org.springframework.web.context.ContextLoaderListener is defined.
+		This is for Spring to bootstrap and shut down the root WebApplicationContext.
+	-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    
+    <!-- One dispatcher servlet (called appServlet) is defined. The WebApplicationContext for the
+		dispatcher servlet is located at 
+		/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml. 
+		The next step is to configure the DispatcherServlet in servlet-context.xml.
+	-->
+    <servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
 </web-app>
