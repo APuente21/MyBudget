@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * In this case, all URLs with the prefix /contact-webapp-1/contacts will be dispatched to this controller.
  */
 
+@RequestMapping("/contacts")
 @Controller
 public class BudgetController {
     private final Logger logger = LoggerFactory.getLogger(BudgetController.class);   
@@ -37,18 +38,12 @@ public class BudgetController {
     public String list(Model uiModel) {
         logger.info("Listing contacts");
         
-        String s1 = "password";
-        String s2 = "user";
-       // User user = budgetDao.findUser(s1,s2);
-        
-        //Bind List<Contact> to Model, that will be displayed by View.
-        //uiModel.addAttribute("user", user);
 
         return "contacts/list";
     }
    
 	@Autowired(required=true)
-	@Qualifier(value="budgetService")
+	@Resource(name="budgetService")
     public void setBudgetService(BudgetService budgetService) {
         this.budgetService = budgetService;
     }
