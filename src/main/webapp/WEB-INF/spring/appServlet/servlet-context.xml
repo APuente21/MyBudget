@@ -36,13 +36,13 @@
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="suffix" value=".jspx" />
 	</beans:bean>
 	
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
         destroy-method="close">
         <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <beans:property name="url" value="jdbc:mysql://localhost:3306/PublishingDB2" />
+        <beans:property name="url" value="jdbc:mysql://localhost:3306/MyBudget" />
         <beans:property name="username" value="root" />
         <beans:property name="password" value="Selyna@123" />
     </beans:bean>
@@ -51,24 +51,28 @@
 	<beans:bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
-				<beans:property name="hibernateProperties">
+		<beans:property name="hibernateProperties">
 			<beans:props>
 				<beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</beans:prop>
 				<beans:prop key="hibernate.show_sql">true</beans:prop>
 			</beans:props>
 		</beans:property>
 	</beans:bean>
+		
+	<context:component-scan base-package="com.budget"/>
 	
 	<beans:bean id="budgetDao" class="com.budget.BudgetDaoImp">
 		<beans:property name="sessionFactory" ref="sessionFactory" />
 	</beans:bean>
+	
+	<beans:bean id="budgetService" class="com.budget.BudgetServiceImp">
+		<beans:property name="budgetDao" ref="budgetDao"></beans:property>
+	</beans:bean>
 
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
 	<beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<beans:property name="sessionFactory" ref="sessionFactory" />
 	</beans:bean>
-	
-	<tx:annotation-driven transaction-manager="transactionManager"/>
-	
-	<context:component-scan base-package="com.budget"/>
     
 </beans:beans>

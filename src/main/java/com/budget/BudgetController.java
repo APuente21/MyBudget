@@ -2,6 +2,8 @@ package com.budget;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * by the controller. 
  * In this case, all URLs with the prefix /contact-webapp-1/contacts will be dispatched to this controller.
  */
-@RequestMapping("/contacts")
+
 @Controller
 public class BudgetController {
-    private final Logger logger = LoggerFactory.getLogger(BudgetController.class);
-
-    private BudgetDao budgetDao;
+    private final Logger logger = LoggerFactory.getLogger(BudgetController.class);   
+    private BudgetService budgetService;
 
     /* The URL /contact-webapp-1/contacts with the HTTP GET method will be handled by this method
      * The list of contacts are retrieved and saved into the Model interface passed 
@@ -46,9 +47,10 @@ public class BudgetController {
         return "contacts/list";
     }
    
-    @Autowired
-    public void setBudgetDao(BudgetDao budgetDao) {
-        this.budgetDao = budgetDao;
+	@Autowired(required=true)
+	@Qualifier(value="budgetService")
+    public void setBudgetService(BudgetService budgetService) {
+        this.budgetService = budgetService;
     }
 
 }
