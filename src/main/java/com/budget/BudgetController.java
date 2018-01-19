@@ -42,10 +42,12 @@ public class BudgetController {
         return "contacts/list";
     }
    
+    
 	@Autowired(required=true)
 	@Resource(name="budgetService")
     public void setBudgetService(BudgetService budgetService) {
         this.budgetService = budgetService;
     }
-
+    
+	
 }

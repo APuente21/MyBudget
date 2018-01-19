@@ -16,42 +16,40 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
        
-    <!-- 4. The content of this configuration file should be familiar from 
-            previous topics. Notice, that this file should be imported into
-            root-context.xml  Spring’s root WebApplicationContext. -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-        destroy-method="close">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/MyBudget" />
-        <property name="username" value="root" />
-        <property name="password" value="Selyna@123" />
-    </bean>
-    
-    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
+       
+	<bean destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource" id="dataSource">
+		<property value="com.mysql.jdbc.Driver" name="driverClassName"/>
+		<property value="jdbc:mysql://localhost:3306/MyBudget" name="url"/>
+		<property value="root" name="username"/>
+		<property value="Selyna@123" name="password"/>
 	</bean>
-    
-    <bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
+
+
+	<bean class="org.springframework.orm.hibernate4.HibernateTransactionManager" id="transactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+
+	<bean class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" id="sessionFactory">
+		<property name="dataSource" ref="dataSource"/>
 		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.show_sql">true</prop>
-			</props>
+		<props>
+			<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+			<prop key="hibernate.show_sql">true</prop>
+		</props>
 		</property>
 	</bean>
 
-    <tx:annotation-driven transaction-manager="transactionManager" />
-    
-    <bean id="budgetDao" class="com.budget.BudgetDaoImp">
-		<property name="sessionFactory" ref="sessionFactory" />
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+	<bean class="com.budget.BudgetDaoImp" id="budgetDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
-	
-	<bean id="budgetService" class="com.budget.BudgetServiceImp">
-		<property name="budgetDao" ref="budgetDao"></property>
+
+	<bean class="com.budget.BudgetServiceImp" id="budgetService">
+		<property name="budgetDao" ref="budgetDao"/>
 	</bean>
-    
-    <context:annotation-config/>
+
+	<context:annotation-config/>
 
 </beans>
