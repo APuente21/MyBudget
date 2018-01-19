@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * In this case, all URLs with the prefix /contact-webapp-1/contacts will be dispatched to this controller.
  */
 
-@RequestMapping("/contacts")
+
 @Controller
 public class BudgetController {
     private final Logger logger = LoggerFactory.getLogger(BudgetController.class);   
