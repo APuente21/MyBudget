@@ -1,27 +1,23 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <head>
-<title>Spring MVC Form Handling Example</title>
+    <title>Spring MVC Form Handling Example</title>
+    <spring:url  value="/resources/core/css/hello.css" var="coreCss" />   
+    <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss" />
+    
+    
+    <link rel="stylesheet" type="text/css"  href="${bootstrapCss}" />
+    <link rel="stylesheet" type="text/css"  href="${coreCss}" />
 
-<spring:url value="/resources/core/css/hello.css" var="coreCss" />
-<spring:url value="/resources/core/css/bootstrap.min.css"
-	var="bootstrapCss" />
-<link href="${bootstrapCss}" rel="stylesheet" />
-<link href="${coreCss}" rel="stylesheet" />
 </head>
 
 <spring:url value="/" var="urlHome" />
 <spring:url value="/users/add" var="urlAddUser" />
 
-<nav class="navbar navbar-inverse ">
-	<div class="container">
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid myHeader">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="${urlHome}">My Budget</a>
-		</div>
-		<div id="navbar">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="${urlAddUser}">Add User</a></li>
-			</ul>
+			<h1><a class="navbar-brand" href="${urlHome}">My Budget</a></h1>
 		</div>
 	</div>
 </nav>

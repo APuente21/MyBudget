@@ -11,20 +11,36 @@
 <body>
 
 	<div class="container">
-
-		<c:if test="${not empty msg}">
-			<div class="alert alert-${css} alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<strong>${msg}</strong>
-			</div>
-		</c:if>
-
 		<h1>All Users</h1>
-
-
 	</div>
+    
+    <form:form action="register" method="post" modelAttribute="user">
+        
+        <spring:bind path="FIRST_NAME">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">First Name</label>
+				<div class="col-sm-10">
+					<form:input path="FIRST_NAME" type="text" class="form-control " id="name" placeholder="Name" />
+				</div>
+			</div>
+		</spring:bind>
+        
+        		<spring:bind path="email">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Email</label>
+				<div class="col-sm-10">
+					<form:input path="email" class="form-control" id="email" placeholder="Email" />
+				</div>
+			</div>
+		</spring:bind>
+        
+        <div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn-lg btn-primary pull-right">Add</button>
+			</div>
+		</div>
+
+    </form:form>
 
 	<jsp:include page="components/footer.jsp" />
 

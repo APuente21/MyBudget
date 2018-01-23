@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -34,9 +35,28 @@ public class BudgetController {
      * As a result, Spring MVC will pick up the file /WEB-INF/views/contacts/list.jspx as the view.
      * This is the next step.
      */
+    
+    /*
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model uiModel) {
         logger.info("Listing contacts");
+        
+
+        return "contacts/list";
+    }
+    */
+   
+    @RequestMapping(method = RequestMethod.GET)
+    public String list(@ModelAttribute("user") User user) {
+        logger.info("Listing contacts");
+        
+
+        return "contacts/list";
+    }
+    
+    @RequestMapping(method = RequestMethod.POST)
+    public String listPost(@ModelAttribute("user") User user) {
+        logger.info(user.toString());
         
 
         return "contacts/list";

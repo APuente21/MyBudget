@@ -1,0 +1,14 @@
+.checkbox-inline label, .radio-inline label{
+  font-weight: normal;
+}
+
+div {
+    background-color: black;
+    
+}
+
+h1 a {
+    color: palegreen;
+    text-decoration: none;
+    
+}
