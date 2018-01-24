@@ -28,6 +28,11 @@ public class BudgetServiceImp implements BudgetService {
 	public List<User> findAllUsers() {
 		return this.budgetDao.findAllUsers();
 	}
+	
+	@Override
+	public User saveUser(User user) {
+		return this.budgetDao.saveUser(user);
+	}
 
 	@Transactional
 	@Override

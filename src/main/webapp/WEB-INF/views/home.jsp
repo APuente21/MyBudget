@@ -33,7 +33,7 @@
             
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-5">
-                    <a href="/register.html">Register</a>
+                    <a href="register">Register</a>
                     <button type="submit" class="btn-lg btn-primary pull-right">Sign In</button>
                 </div>
             </div>

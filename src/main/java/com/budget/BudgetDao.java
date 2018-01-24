@@ -8,4 +8,5 @@ public interface BudgetDao {
 	List<User> findAllUsers();
 	User findUser(String email, String password);
 	List<BudgetEntry> findEntriesByUser(long id);
+	User saveUser(User user);
 }

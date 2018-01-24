@@ -44,6 +44,12 @@ public class BudgetDaoImp implements BudgetDao {
                 .setParameter("id", id)
                 .list();
 	}
+    
+    @Override
+    public User saveUser(User user) {
+    	sessionFactory.getCurrentSession().saveOrUpdate(user);
+    	return user;
+    }
 	
     public SessionFactory getSessionFactory() {
         return sessionFactory;

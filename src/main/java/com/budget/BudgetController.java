@@ -59,13 +59,38 @@ public class BudgetController {
     	    if (result.hasErrors()) {
     	           return "error";
     	    }
-    	    model.addAttribute("firstName", user.getFirstName());
-    	    model.addAttribute("number", user.getNumber());
-    	    model.addAttribute("email", user.getEmail());
-    	    logger.info("User id: " + user.getId());
-    	        
-    	    return "redirect:/";
+    	    
+    	    User reguisteredUser = budgetService.findUser(user.getEmail(), user.getPassword());    	   
+    	    
+    	    if (reguisteredUser != null) {
+    	    	return "redirect:/users";
+    	    }
+    	    else 
+    	    	return "redirect:/";
     }
+    
+    /*
+     * HTTP request that is intercepted when a user clicks on register button on the home page. The
+     * method maps a new user to the register.jsp form, which is returned to the browser
+     */
+    @RequestMapping(value="/register", method = RequestMethod.GET)
+    public ModelAndView registerForm() {
+ 	        
+    	    return new ModelAndView("register", "user", new User());
+    }
+    
+    
+    @RequestMapping (value="/register", method = RequestMethod.POST)
+    public String register(@Valid @ModelAttribute("user")User user, 
+    		BindingResult result, ModelMap model) {
+    	    if (result.hasErrors()) {
+    	           return "error";
+    	    }
+    	    budgetService.saveUser(user);
+   	    	return "redirect:/users";
+
+    }
+    
     
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ModelAndView get() {
