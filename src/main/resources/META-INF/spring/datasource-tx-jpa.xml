@@ -24,14 +24,9 @@
 		<property value="Selyna@123" name="password"/>
 	</bean>
 
-
-	<bean class="org.springframework.orm.hibernate4.HibernateTransactionManager" id="transactionManager">
-		<property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
-
-
 	<bean class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" id="sessionFactory">
 		<property name="dataSource" ref="dataSource"/>
+		<property name = "packagesToScan" value="com.budget" />
 		<property name="hibernateProperties">
 		<props>
 			<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
@@ -40,8 +35,14 @@
 		</property>
 	</bean>
 
+	<context:component-scan base-package="com.budget"/>
+	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 
+	<bean class="org.springframework.orm.hibernate4.HibernateTransactionManager" id="transactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
 	<bean class="com.budget.BudgetDaoImp" id="budgetDao">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>

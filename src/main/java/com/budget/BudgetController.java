@@ -3,6 +3,7 @@ package com.budget;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,9 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 9. The annotation @Controller is applied to the class, indicating that it’s a Spring MVC controller. 
@@ -37,34 +41,62 @@ public class BudgetController {
      */
     
     /*
+     * The first request that is intercepted when a user first visits the site. It displays a login
+     * form for the user.
+     */
     @RequestMapping(method = RequestMethod.GET)
-    public String list(Model uiModel) {
-        logger.info("Listing contacts");
-        
-
-        return "contacts/list";
+    public ModelAndView signIn() {
+ 	        
+    	    return new ModelAndView("home", "user", new User());
     }
-    */
    
-    @RequestMapping(method = RequestMethod.GET)
-    public String list(@ModelAttribute("user") User user) {
-        logger.info("Listing contacts");
-        
-
-        return "contacts/list";
+    /*
+     * Intercepts the login request from the home screen and checks to see if the user is in the database
+     */
+    @RequestMapping (method = RequestMethod.POST)
+    public String logInCheck(@Valid @ModelAttribute("user")User user, 
+    		BindingResult result, ModelMap model) {
+    	    if (result.hasErrors()) {
+    	           return "error";
+    	    }
+    	    model.addAttribute("firstName", user.getFirstName());
+    	    model.addAttribute("number", user.getNumber());
+    	    model.addAttribute("email", user.getEmail());
+    	    logger.info("User id: " + user.getId());
+    	        
+    	    return "redirect:/";
     }
     
-    @RequestMapping(method = RequestMethod.POST)
-    public String listPost(@ModelAttribute("user") User user) {
-        logger.info(user.toString());
-        
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public ModelAndView get() {
+        logger.info("Listing contacts");
+       
 
-        return "contacts/list";
+        List<User> users = budgetService.findAllUsers();
+        logger.info("Listing contacts");
+      
+        return new ModelAndView("list", "users", users);
+    }
+    
+
+    
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    public String submit(@Valid @ModelAttribute("user")User user, 
+    		BindingResult result, ModelMap model) {
+    	    if (result.hasErrors()) {
+    	           return "error";
+    	    }
+    	    model.addAttribute("firstName", user.getFirstName());
+    	    model.addAttribute("number", user.getNumber());
+    	    model.addAttribute("email", user.getEmail());
+    	    logger.info("User id: " + user.getId());
+    	        
+    	    return "redirect:/";
     }
    
     
 	@Autowired(required=true)
-	@Resource(name="budgetService")
+	@Qualifier(value="budgetService")
     public void setBudgetService(BudgetService budgetService) {
         this.budgetService = budgetService;
     }

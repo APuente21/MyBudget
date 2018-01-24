@@ -2,13 +2,13 @@
   font-weight: normal;
 }
 
-div {
-    background-color: black;
+.myHeader {
     
 }
 
-h1 a {
-    color: palegreen;
+.myHeader h1 a {
+    color: red !important;
     text-decoration: none;
+    text-align: center;
     
 }

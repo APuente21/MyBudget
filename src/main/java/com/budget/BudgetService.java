@@ -5,5 +5,6 @@ import java.util.List;
 public interface BudgetService {
 	List<BudgetEntry> findAllEntries();
 	User findUser(String email, String password);
+	List<User> findAllUsers();
 	List<BudgetEntry> findEntriesByUser(long id);
 }

@@ -1,10 +1,11 @@
 package com.budget;
 
 import java.util.List;
+
+import javax.annotation.Resource;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-
 import com.budget.BudgetEntry;
 import com.budget.User;
 
@@ -16,7 +17,14 @@ public class BudgetDaoImp implements BudgetDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BudgetEntry> findAllEntries() {
-		return sessionFactory.getCurrentSession().createQuery("from  BudgetEntry b").list();
+		return sessionFactory.getCurrentSession().createQuery("from BudgetEntry b").list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> findAllUsers() {
+		List<User> list = sessionFactory.getCurrentSession().createQuery("from User").list();
+		return list;
 	}
 	
     @Override

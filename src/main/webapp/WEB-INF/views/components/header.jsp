@@ -16,7 +16,7 @@
 
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid myHeader">
-		<div class="navbar-header">
+		<div class="navbar-header" align="center">
 			<h1><a class="navbar-brand" href="${urlHome}">My Budget</a></h1>
 		</div>
 	</div>
