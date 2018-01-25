@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.budget.BudgetEntry;
 import com.budget.User;
 
@@ -45,6 +47,7 @@ public class BudgetDaoImp implements BudgetDao {
                 .list();
 	}
     
+    @Transactional
     @Override
     public User saveUser(User user) {
     	sessionFactory.getCurrentSession().saveOrUpdate(user);

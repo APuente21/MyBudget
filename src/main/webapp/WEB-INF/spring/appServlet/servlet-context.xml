@@ -30,11 +30,8 @@
 	     "mapping" specifies under what uri will resources be accessible on the web
 	-->
     
-    <resources location="/" mapping="/resources/**"/>
-    
-    <!-- 
-    <resources mapping="/resources/**" location="/resources/core/" />
-     -->
+    <resources location="/resources/core/" mapping="/resources/**"/>
+
 
     <!-- For the ViewResolver interface, we will be using the InternalResourceViewResolver class as the
 		implementation. Notice the suffix  .jspx.
