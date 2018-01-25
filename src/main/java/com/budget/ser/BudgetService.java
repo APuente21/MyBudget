@@ -1,6 +1,9 @@
-package com.budget;
+package com.budget.ser;
 
 import java.util.List;
+
+import com.budget.domain.BudgetEntry;
+import com.budget.domain.User;
 
 public interface BudgetService {
 	List<BudgetEntry> findAllEntries();

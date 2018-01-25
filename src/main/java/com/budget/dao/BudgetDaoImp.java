@@ -1,4 +1,4 @@
-package com.budget;
+package com.budget.dao;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.budget.BudgetEntry;
-import com.budget.User;
+import com.budget.domain.BudgetEntry;
+import com.budget.domain.User;
 
 @Repository
 public class BudgetDaoImp implements BudgetDao {
@@ -17,19 +17,16 @@ public class BudgetDaoImp implements BudgetDao {
 
 	
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<BudgetEntry> findAllEntries() {
 		return sessionFactory.getCurrentSession().createQuery("from BudgetEntry b").list();
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<User> findAllUsers() {
 		List<User> list = sessionFactory.getCurrentSession().createQuery("from User").list();
 		return list;
 	}
 	
-    @Override
 	public User findUser(String email, String password) {
 		return (User) sessionFactory.getCurrentSession()
                 .getNamedQuery("User.findUser")
@@ -39,7 +36,6 @@ public class BudgetDaoImp implements BudgetDao {
 	}
 	
     @SuppressWarnings("unchecked")
-	@Override
 	public List<BudgetEntry> findEntriesByUser(long id) {
 		return sessionFactory.getCurrentSession()
                 .getNamedQuery("BudgetEntry.findEntriesByUser")
@@ -48,7 +44,6 @@ public class BudgetDaoImp implements BudgetDao {
 	}
     
     @Transactional
-    @Override
     public User saveUser(User user) {
     	sessionFactory.getCurrentSession().saveOrUpdate(user);
     	return user;

@@ -1,4 +1,4 @@
-package com.budget;
+package com.budget.domain;
 
 import static javax.persistence.GenerationType.IDENTITY;
 import java.util.Date;

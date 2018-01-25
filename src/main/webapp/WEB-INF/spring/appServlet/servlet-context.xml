@@ -15,13 +15,30 @@
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <!-- 8. The mvc namespace is declared as the default namespace. 
-            The <annotation-driven> tag enables the support of annotation configuration 
+    <!-- The <annotation-driven> tag enables the support of annotation configuration 
             for Spring MVC controllers, as well as enabling Spring type conversion 
             and formatting support.
     -->
     <mvc:annotation-driven />
 	
+	<!-- The beans directly below are linked to the validator 
+	
+	<annotation-driven validator="validator"/>
+	
+	<beans:bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <beans:property name="validationMessageSource" ref="messageSource"/>
+    </beans:bean>
+    
+    <beans:bean class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+                id="messageSource" p:basename="WEB-INF/messages/messages"
+                p:fallbackToSystemLocale="false"/>
+	
+	<beans:bean id="emailValidator" class="com.budget.validator.EmailValidator"/>
+	
+	<beans:bean id="userFormValidator" class="com.budget.validator.UserFormValidator">
+		<beans:property name="emailValidator" ref="emailValidator"></beans:property>
+	</beans:bean>
+	-->
 	
 	<!-- The <resources> tag defines the static resources (e.g, CSS, JavaScript, and images) 
 	     and their locations so Spring MVC can improve the performance in serving those files.

@@ -46,11 +46,11 @@
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	
-	<bean class="com.budget.BudgetDaoImp" id="budgetDao">
+	<bean class="com.budget.dao.BudgetDaoImp" id="budgetDao">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
-	<bean class="com.budget.BudgetServiceImp" id="budgetService">
+	<bean class="com.budget.ser.BudgetServiceImp" id="budgetService">
 		<property name="budgetDao" ref="budgetDao"/>
 	</bean>
 

@@ -1,22 +1,24 @@
-package com.budget;
+package com.budget.controller;
 
 import java.util.List;
-
-import javax.annotation.Resource;
 import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import com.budget.domain.User;
+import com.budget.ser.BudgetService;
+import com.budget.validator.UserFormValidator;
+
 
  // Controller is responsible for processing HTTP requests
 
@@ -25,15 +27,15 @@ import org.springframework.web.servlet.ModelAndView;
 public class BudgetController {
     private final Logger logger = LoggerFactory.getLogger(BudgetController.class);   
     private BudgetService budgetService;
-
+    private UserFormValidator userFormValidator;
+    
     /*
      * The first request that is intercepted when a user first visits the site. It displays a login
      * form for the user.
      */
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView signIn() {
- 	        
-    	    return new ModelAndView("home", "user", new User());
+    	 return new ModelAndView("home", "user", new User());
     }
    
     /*
@@ -90,7 +92,13 @@ public class BudgetController {
         return new ModelAndView("list", "users", users);
     }
     
-   
+   /*
+    @Autowired(required=true)
+	@Qualifier(value="userFormValidator")
+    public void setValidator(UserFormValidator validator) {
+        this.userFormValidator = validator;
+    }
+    */
     
 	@Autowired(required=true)
 	@Qualifier(value="budgetService")
