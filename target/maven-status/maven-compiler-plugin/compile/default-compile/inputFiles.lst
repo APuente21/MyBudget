@@ -3,8 +3,10 @@ C:\Users\andre\OneDrive\MyBudget\src\main\java\com\budget\validator\EmailValidat
 C:\Users\andre\OneDrive\MyBudget\src\main\java\com\budget\validator\UserFormValidator.java
 C:\Users\andre\OneDrive\MyBudget\src\main\java\com\budget\ser\BudgetService.java
 C:\Users\andre\OneDrive\MyBudget\src\main\java\com\budget\controller\BudgetController.java
+C:\Users\andre\OneDrive\MyBudget\src\main\java\com\budget\controller\LogInController.java
 C:\Users\andre\OneDrive\MyBudget\src\main\java\com\budget\domain\BudgetEntry.java
 C:\Users\andre\OneDrive\MyBudget\src\main\java\com\budget\domain\Category.java
 C:\Users\andre\OneDrive\MyBudget\src\main\java\com\budget\ser\BudgetServiceImp.java
 C:\Users\andre\OneDrive\MyBudget\src\main\java\com\budget\dao\BudgetDao.java
+C:\Users\andre\OneDrive\MyBudget\src\main\java\com\budget\validator\LogInFormValidator.java
 C:\Users\andre\OneDrive\MyBudget\src\main\java\com\budget\domain\User.java

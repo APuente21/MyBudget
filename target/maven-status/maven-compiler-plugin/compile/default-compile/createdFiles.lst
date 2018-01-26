@@ -4,7 +4,9 @@ com\budget\controller\BudgetController.class
 com\budget\dao\BudgetDao.class
 com\budget\domain\User.class
 com\budget\domain\Category.class
+com\budget\validator\LogInFormValidator.class
 com\budget\dao\BudgetDaoImp.class
 com\budget\validator\UserFormValidator.class
 com\budget\domain\BudgetEntry.class
+com\budget\controller\LogInController.class
 com\budget\validator\EmailValidator.class

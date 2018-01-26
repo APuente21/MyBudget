@@ -49,7 +49,7 @@
           <groupId>org.jadira.usertype</groupId>
           <artifactId>usertype.core</artifactId>
           <version>${usertype.version}</version>
-      </dependency>
+      </dependency>	
       <dependency>
           <groupId>org.springframework.data</groupId>
           <artifactId>spring-data-jpa</artifactId>

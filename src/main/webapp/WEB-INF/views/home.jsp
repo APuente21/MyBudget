@@ -35,6 +35,7 @@
                 <div class="col-sm-offset-2 col-sm-5">
                     <a href="register">Register</a>
                     <button type="submit" class="btn-lg btn-primary pull-right">Sign In</button>
+                    <form:errors path="number" class="control-label" />
                 </div>
             </div>
             

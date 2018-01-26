@@ -1,3 +1,5 @@
+
+
 package com.budget.controller;
 
 import java.util.List;
@@ -22,53 +24,27 @@ import com.budget.validator.UserFormValidator;
 
  // Controller is responsible for processing HTTP requests
 
-
+@RequestMapping("/**")
 @Controller
 public class BudgetController {
     private final Logger logger = LoggerFactory.getLogger(BudgetController.class);   
     private BudgetService budgetService;
-    private UserFormValidator userFormValidator;
+  
     
-    /*
-     * The first request that is intercepted when a user first visits the site. It displays a login
-     * form for the user.
-     */
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView signIn() {
-    	 return new ModelAndView("home", "user", new User());
-    }
-   
-    /*
-     * Intercepts the login request from the home screen and checks to see if the user is in the database
-     */
-    @RequestMapping (method = RequestMethod.POST)
-    public String logInCheck(@Valid @ModelAttribute("user")User user, 
-    		BindingResult result, ModelMap model) {
-    	    if (result.hasErrors()) {
-    	           return "error";
-    	    }
-    	    User reguisteredUser = budgetService.findUser(user.getEmail(), user.getPassword());    	   
-    	    
-    	    if (reguisteredUser != null) {
-    	    	return "redirect:/users";
-    	    }
-    	    else 
-    	    	return "redirect:/";
-    }
     
-    /*
-     * HTTP request that is intercepted when a user clicks on register button on the home page. The
-     * method maps a new user to the register.jsp form, which is returned to the browser
-     */
+    
+    //* HTTP request that is intercepted when a user clicks on register button on the home page. The
+    // * method maps a new user to the register.jsp form, which is returned to the browser
+     
     @RequestMapping(value="/register", method = RequestMethod.GET)
     public ModelAndView registerForm() {
     	    return new ModelAndView("register", "user", new User());
     }
     
     
-    /*
-     * Saves the new user into the database, after which it sends a twilio message to that phone number
-     */
+    
+     //* Saves the new user into the database, after which it sends a twilio message to that phone number
+    
     @RequestMapping (value="/register", method = RequestMethod.POST)
     public String register(@Valid @ModelAttribute("user")User user, 
     		BindingResult result, ModelMap model) {
@@ -92,13 +68,6 @@ public class BudgetController {
         return new ModelAndView("list", "users", users);
     }
     
-   /*
-    @Autowired(required=true)
-	@Qualifier(value="userFormValidator")
-    public void setValidator(UserFormValidator validator) {
-        this.userFormValidator = validator;
-    }
-    */
     
 	@Autowired(required=true)
 	@Qualifier(value="budgetService")
@@ -108,3 +77,4 @@ public class BudgetController {
     
 	
 }
+
