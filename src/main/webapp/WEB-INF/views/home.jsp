@@ -17,7 +17,6 @@
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <div class="col-sm-offset-2 col-sm-5">
                         <form:input path="email" type="text" class="form-control " id="email" placeholder="Email" />
-                        <form:errors path="email" class="control-label" />
                     </div>
                 </div>
             </spring:bind>
@@ -26,7 +25,6 @@
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <div class="col-sm-offset-2 col-sm-5">
                         <form:input path="password" type="text" class="form-control " id="password" placeholder="Password" />
-                        <form:errors path="password" class="control-label" />
                     </div>
                 </div>
             </spring:bind>
@@ -35,6 +33,17 @@
                 <div class="col-sm-offset-2 col-sm-5">
                     <a href="register">Register</a>
                     <button type="submit" class="btn-lg btn-primary pull-right">Sign In</button>
+                </div>
+            </div>
+            
+            <div>
+                <div>
+                    <form:errors path="email" class="control-label" />
+                </div>
+                <div>
+                    <form:errors path="password" class="control-label" />
+                </div>
+                <div>
                     <form:errors path="number" class="control-label" />
                 </div>
             </div>

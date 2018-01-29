@@ -19,20 +19,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import com.budget.domain.User;
 import com.budget.ser.BudgetService;
+import com.budget.validator.LogInFormValidator;
 import com.budget.validator.UserFormValidator;
 
 
  // Controller is responsible for processing HTTP requests
 
-@RequestMapping("/**")
+
 @Controller
 public class BudgetController {
     private final Logger logger = LoggerFactory.getLogger(BudgetController.class);   
     private BudgetService budgetService;
+    private UserFormValidator userFormValidator;
   
     
+    @InitBinder
+	private void initBinder(WebDataBinder binder) {
+		binder.setValidator(userFormValidator);
+	}
+	
     
-    
+   
     //* HTTP request that is intercepted when a user clicks on register button on the home page. The
     // * method maps a new user to the register.jsp form, which is returned to the browser
      
@@ -49,14 +56,13 @@ public class BudgetController {
     public String register(@Valid @ModelAttribute("user")User user, 
     		BindingResult result, ModelMap model) {
     	    if (result.hasErrors()) {
-    	           return "error";
+    	           return "register";
     	    }
     	    budgetService.saveUser(user);
    	    	return "redirect:/users";
 
     }
-    
-    
+      
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ModelAndView get() {
         logger.info("Listing contacts");
@@ -75,6 +81,10 @@ public class BudgetController {
         this.budgetService = budgetService;
     }
     
-	
+	@Autowired(required=true)
+	@Qualifier(value="userFormValidator")
+    public void setUserValidator(UserFormValidator userFormValidator) {
+        this.userFormValidator = userFormValidator;
+    }
 }
 

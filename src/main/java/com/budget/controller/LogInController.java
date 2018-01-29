@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.budget.domain.User;
 import com.budget.ser.BudgetService;
 import com.budget.validator.LogInFormValidator;
-import com.budget.validator.UserFormValidator;
 
 
  // Controller is responsible for intercepting requests to the home page and performing user
@@ -57,7 +57,7 @@ public class LogInController {
     		return "redirect:/users";
     	}
     	else {
-    	    	//result.addError(new ObjectError("number", "Incorrect.logInForm.password"));
+    	    	result.rejectValue("number", "Incorrect.logInForm.password", "Incorrect username/password");
     	  	return "home";
     	}
     	    	

@@ -7,7 +7,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import com.budget.domain.User;
-import com.budget.ser.BudgetService;
+
 
 /*
  * Custom validator that is used to validate the login form. The validator is passed
@@ -29,11 +29,11 @@ public class LogInFormValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 
 		User user = (User) target;
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty.logInForm.email");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty.logInForm.password");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty.email");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty.password");
 
 		if(!emailValidator.valid(user.getEmail())){
-			errors.rejectValue("email", "Pattern.logInForm.email");
+			errors.rejectValue("email", "Pattern.email");
 		}
 		
 
