@@ -1,3 +1,4 @@
+com\budget\controller\SMSController.class
 com\budget\ser\BudgetService.class
 com\budget\ser\BudgetServiceImp.class
 com\budget\controller\BudgetController.class
@@ -6,6 +7,7 @@ com\budget\domain\User.class
 com\budget\domain\Category.class
 com\budget\validator\LogInFormValidator.class
 com\budget\dao\BudgetDaoImp.class
+com\budget\twilio\SMSHandler.class
 com\budget\validator\UserFormValidator.class
 com\budget\domain\BudgetEntry.class
 com\budget\controller\LogInController.class

@@ -61,6 +61,12 @@
               </exclusion>
           </exclusions>
       </dependency>
+       <!-- Twilio -->
+      <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>7.0.0-rc-29</version>
+      </dependency>
       <dependency>
           <groupId>com.google.guava</groupId>
           <artifactId>guava</artifactId>

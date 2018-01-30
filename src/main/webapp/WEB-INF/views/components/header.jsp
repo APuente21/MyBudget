@@ -2,11 +2,9 @@
 
 
 <head>
-    <title>Spring MVC Form Handling Example</title>
-
-    
-    <link rel="stylesheet"   href="<c:url value="/resources/hello.css"/>" type="text/css" />
-    <link rel="stylesheet"   href="<c:url value="/resources/bootstrap.min.css"/>" type="text/css" />
+    <title>Spring MVC Form Handling Example</title>  
+    <link rel="stylesheet"   href="<c:url value="/resources/core/css/hello.css"/>" />
+    <link rel="stylesheet"   href="<c:url value="/resources/core/css/bootstrap.min.css"/>"/>
 
 </head>
 
