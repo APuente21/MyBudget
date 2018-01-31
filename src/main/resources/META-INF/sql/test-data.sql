@@ -5,11 +5,17 @@ insert into CATEGORIES (name) values ('Entertainment');
 insert into CATEGORIES (name) values ('Car');
 insert into CATEGORIES (name) values ('Health');
 
-insert into USERS (first_name, last_name, email, password, phone_number) values ('Andres', 'Bravo', 'abrovo@gmail.com', 'brabopass', '19176769666');
-insert into USERS (first_name, last_name, email, password, phone_number) values ('Brian', 'Porter', 'bporter@gmail.com', 'porterpass', '12122786659');
-insert into USERS (first_name, last_name, email, password, phone_number) values ('Meladie', 'Gardout', 'mgardout@gmail.com', 'gardoutpass', '12122789676');
-insert into USERS (first_name, last_name, email, password, phone_number) values ('Chris', 'Pine', 'cpine@gmail.com', 'pinepass', '16469861253');
-insert into USERS (first_name, last_name, email, password, phone_number) values ('Armie', 'Hammer', 'ahammer@gmail.com', 'hammerpass', '12128563125');
+insert into PHONES (country_code, area_code, number) values (1, 212, 6636659);
+insert into PHONES (country_code, area_code, number) values (1, 917, 2239666);
+insert into PHONES (country_code, area_code, number) values (1, 417, 3219676);
+insert into PHONES (country_code, area_code, number) values (1, 718, 4521253);
+insert into PHONES (country_code, area_code, number) values (1, 516, 8301709);
+
+insert into USERS (first_name, last_name, email, password, phone_id) values ('Andres', 'Bravo', 'abrovo@gmail.com', 'brabopass', 5);
+insert into USERS (first_name, last_name, email, password, phone_id) values ('Brian', 'Porter', 'bporter@gmail.com', 'porterpass', 1);
+insert into USERS (first_name, last_name, email, password, phone_id) values ('Meladie', 'Gardout', 'mgardout@gmail.com', 'gardoutpass', 2);
+insert into USERS (first_name, last_name, email, password, phone_id) values ('Chris', 'Pine', 'cpine@gmail.com', 'pinepass', 3);
+insert into USERS (first_name, last_name, email, password, phone_id) values ('Armie', 'Hammer', 'ahammer@gmail.com', 'hammerpass', 4);
 
 insert into BUDGET_ENTRIES(user_id, category_id, amount, entry_date) values(1,3,500,'2017-10-26');
 insert into BUDGET_ENTRIES(user_id, category_id, amount, entry_date) values(3,2,50,'2017-10-25');

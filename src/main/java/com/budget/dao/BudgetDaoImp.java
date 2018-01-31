@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.budget.domain.BudgetEntry;
+import com.budget.domain.Phone;
 import com.budget.domain.User;
 
 @Repository
@@ -55,6 +56,21 @@ public class BudgetDaoImp implements BudgetDao {
     	sessionFactory.getCurrentSession().saveOrUpdate(user);
     	return user;
     }
+    
+    @Transactional
+    public Phone savePhone(Phone phone) {
+    	sessionFactory.getCurrentSession().saveOrUpdate(phone);
+    	return phone;
+    }
+    
+	public Phone findPhone(String countryCode, String areaCode, String number) {
+		return (Phone) sessionFactory.getCurrentSession()
+                .getNamedQuery("Phone.findPhone")
+                .setParameter("countryCode", countryCode)
+                .setParameter("areaCode", areaCode)
+                .setParameter("number", number)
+                .uniqueResult();
+	}
 	
     public SessionFactory getSessionFactory() {
         return sessionFactory;

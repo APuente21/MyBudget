@@ -6,22 +6,22 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
 @NamedQueries({
 @NamedQuery(name="User.findUser", 
 query="select u from User u where u.email = :email and u.password = :password"),
-@NamedQuery(name="User.findUserByNUmber", 
+@NamedQuery(name="User.findUserByNumber", 
 query="select u from User u where u.number = :number")
 })
 @Table(name = "USERS")
@@ -31,8 +31,8 @@ public class User {
 	private String lastName;
 	private String email;
 	private String password;
-	private String number;
 	private Set<BudgetEntry> entry = new HashSet<BudgetEntry>();
+	private Phone number;
 	
 	public User(){	}
 	
@@ -92,13 +92,14 @@ public class User {
 	 public void setBudgetEntry(Set<BudgetEntry> entry) {
 		 this.entry = entry;
 	 }
-	
-	public void setNumber(String number) {
+	 	 
+	public void setNumber(Phone number) {
 		this.number = number;
 	}
-	 
-    @Column(name = "PHONE_NUMBER")
-	public String getNumber() {
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "PHONE_ID")
+	public Phone getNumber() {
 		return this.number;
 	}
     

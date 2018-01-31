@@ -12,8 +12,8 @@ import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
 public class SMSHandler {
-	  public static final String ACCOUNT_SID = "Axxxx";
-	  public static final String AUTH_TOKEN = "65";
+	  public static final String ACCOUNT_SID = "";
+	  public static final String AUTH_TOKEN = "";
 	  private BudgetService budgetService;
 	  private User user;
 	  private BudgetEntry bEntry;

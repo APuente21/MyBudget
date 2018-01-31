@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.budget.domain.Phone;
 import com.budget.domain.User;
+import com.budget.domain.User_Phone_Wrapper;
 import com.budget.ser.BudgetService;
 import com.budget.validator.LogInFormValidator;
 import com.budget.validator.UserFormValidator;
@@ -46,7 +49,7 @@ public class BudgetController {
      
     @RequestMapping(value="/register", method = RequestMethod.GET)
     public ModelAndView registerForm() {
-    	    return new ModelAndView("register", "user", new User());
+    	    return new ModelAndView("register", "user", new User_Phone_Wrapper());
     }
     
     
@@ -54,11 +57,28 @@ public class BudgetController {
      //* Saves the new user into the database, after which it sends a twilio message to that phone number
     
     @RequestMapping (value="/register", method = RequestMethod.POST)
-    public String register(@Valid @ModelAttribute("user")User user, 
+    public String register(@Valid @ModelAttribute("user")User_Phone_Wrapper wrapper, 
     		BindingResult result, ModelMap model) {
     	    if (result.hasErrors()) {
     	           return "register";
     	    }
+    	    
+    	    //Check to see if phone number is already in the system. If so return error message
+    	    Phone phone = budgetService.findPhone(wrapper.getCountryCode(), wrapper.getAreaCode(), wrapper.getNumber());
+    	    if( phone != null) {
+    	    	result.rejectValue("number", "Duplicate.userForm.number", "Duplicate number");
+    	    	return "register";
+    	    }
+    	    
+    	    phone = new Phone(wrapper.getCountryCode(), wrapper.getAreaCode(), wrapper.getNumber());
+    	    phone = budgetService.savePhone(phone);
+    	    User user = new User();
+    	    user.setEmail(wrapper.getEmail());
+    	    user.setFirstName(wrapper.getFirstName());
+    	    user.setLastName(wrapper.getLastName());
+    	    user.setPassword(wrapper.getPassword());
+    	    user.setNumber(phone);
+    	    
     	    budgetService.saveUser(user);
    	    	return "redirect:/users";
 

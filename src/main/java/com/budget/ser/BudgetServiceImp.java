@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.budget.dao.BudgetDao;
 import com.budget.domain.BudgetEntry;
+import com.budget.domain.Phone;
 import com.budget.domain.User;
 	
 
@@ -32,6 +33,10 @@ public class BudgetServiceImp implements BudgetService {
 	public User saveUser(User user) {
 		return this.budgetDao.saveUser(user);
 	}
+	
+	public Phone savePhone(Phone phone) {
+		return this.budgetDao.savePhone(phone);
+	}
 
 	@Transactional
 	public User findUser(String email, String password) {
@@ -43,6 +48,11 @@ public class BudgetServiceImp implements BudgetService {
 		return this.budgetDao.findUserByNumber(number);
 	}
 
+	@Transactional
+	public Phone findPhone(String cCode, String aCode, String number) {
+		return this.budgetDao.findPhone(cCode, aCode, number);
+	}
+	
 	@Transactional
 	public List<BudgetEntry> findEntriesByUser(long id) {
 		return this.budgetDao.findEntriesByUser(id);

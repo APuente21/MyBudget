@@ -31,7 +31,7 @@
                 </div>
             </spring:bind>
             
-                        <spring:bind path="email">
+            <spring:bind path="email">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <div class="col-sm-offset-2 col-sm-5">
                         <form:input path="email" type="text" class="form-control " id="email" placeholder="Email" />
@@ -40,7 +40,7 @@
                 </div>
             </spring:bind>
             
-                        <spring:bind path="password">
+            <spring:bind path="password">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <div class="col-sm-offset-2 col-sm-5">
                         <form:input path="password" type="text" class="form-control " id="password" placeholder="Password" />
@@ -49,14 +49,14 @@
                 </div>
             </spring:bind>
             
-                        <spring:bind path="number">
-                <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <div class="col-sm-offset-2 col-sm-5">
-                        <form:input path="number" type="text" class="form-control " id="number" placeholder="XXX-XXX-XXX" />
-                        
-                    </div>
+            
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <div class="col-sm-offset-2 col-sm-5">
+                    <form:input path="countryCode" type="text" class="form-control " id="countryCode" placeholder="country code" />
+                    <form:input path="areaCode" type="text" class="form-control " id="areaCode" placeholder="area code" />
+                    <form:input path="number" type="text" class="form-control " id="number" placeholder="number" />
                 </div>
-            </spring:bind>
+            </div>
             
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-5">
@@ -79,7 +79,13 @@
                 </div>
                 <div>
                     <form:errors path="number" class="control-label" />
-                </div>             
+                </div>   
+                <div>
+                    <form:errors path="countryCode" class="control-label" />
+                </div>   
+                <div>
+                    <form:errors path="areaCode" class="control-label" />
+                </div>   
             </div>     
         </form:form>
 
