@@ -28,7 +28,7 @@ public class BudgetDaoImp implements BudgetDao {
 		return list;
 	}
 	
-	public User findUserByNumber(String number) {
+	public User findUserByNumber(Phone number) {
 		return (User) sessionFactory.getCurrentSession()
                 .getNamedQuery("User.findUserByNumber")
                 .setParameter("number", number)

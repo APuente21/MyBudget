@@ -9,7 +9,7 @@ import com.budget.domain.User;
 public interface BudgetService {
 	
 	User findUser(String email, String password);
-	User findUserByNumber(String number);
+	User findUserByNumber(Phone number);
 	User saveUser(User user);
 	List<User> findAllUsers();
 	Phone savePhone(Phone phone);

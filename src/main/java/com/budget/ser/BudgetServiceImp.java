@@ -44,7 +44,7 @@ public class BudgetServiceImp implements BudgetService {
 	}
 	
 	@Transactional
-	public User findUserByNumber(String number) {
+	public User findUserByNumber(Phone number) {
 		return this.budgetDao.findUserByNumber(number);
 	}
 

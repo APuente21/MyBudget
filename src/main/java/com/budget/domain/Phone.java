@@ -70,6 +70,15 @@ public class Phone {
 	public String getNumber() {
 		return this.number;
 	}
+	
+	public static String [] getDigits(String input) {
+		String[] digits = new String[3];
+			digits[0] = input.substring(1, input.length()-10);
+			digits[1] = input.substring(input.length()-10, input.length()-7);
+			digits[2] = input.substring(input.length()-7);
+		return digits;
+	}
+	  
 
 	public String toString() {
 		return ("+" + countryCode + areaCode + number);

@@ -11,7 +11,7 @@ public interface BudgetDao {
 	
 	List<User> findAllUsers();
 	User findUser(String email, String password);
-	User findUserByNumber(String number);
+	User findUserByNumber(Phone number);
 	User saveUser(User user);
 	List<BudgetEntry> findEntriesByUser(long id);
 	List<BudgetEntry> findAllEntries();
