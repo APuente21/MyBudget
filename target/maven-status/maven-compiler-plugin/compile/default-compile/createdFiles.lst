@@ -3,6 +3,7 @@ com\budget\ser\BudgetService.class
 com\budget\ser\BudgetServiceImp.class
 com\budget\controller\BudgetController.class
 com\budget\dao\BudgetDao.class
+com\budget\domain\Request.class
 com\budget\domain\User.class
 com\budget\domain\Category.class
 com\budget\validator\LogInFormValidator.class

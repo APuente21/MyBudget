@@ -19,11 +19,9 @@ public class SMSController {
 	   private BudgetService budgetService;
 	   
 	    @RequestMapping(value="/sms", method = RequestMethod.POST)
-	    public void processMsg (@RequestParam("From") String fromNumber, @RequestParam("Body") String txtBody) {
-	    	
-
+	    public void processMsg (@RequestParam("From") String fromNumber, @RequestParam("Body") String txtBody) {	
 	    	SMSHandler smsHandler = new SMSHandler(fromNumber, txtBody, budgetService);
-	    	smsHandler.sendConfirmationSMS();	
+	    	smsHandler.processRequest();
 	    }
 	    
 		@Autowired(required=true)

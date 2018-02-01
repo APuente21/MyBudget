@@ -25,19 +25,20 @@ public class BudgetEntry {
 	private long id;
 	private long user_id;
 	private User user;
+	private String description;
 	private Category category;
-	private long amount;
+	private double amount;
 	private Date date;
-	
-	public void setId(Long id) {
-		this.id = id;
-	}
 	
 	@Id
 	@GeneratedValue(strategy = IDENTITY) 
     @Column(name = "ID")
 	public Long getId() {
 		return this.id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	@ManyToOne
@@ -61,15 +62,24 @@ public class BudgetEntry {
 		this.category = category;
 	}
 	
-	public void setAmount(long amount) {
+    @Column(name = "AMOUNT")
+	public double getAmount() {
+		return this.amount;
+	}
+	
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 	
-    @Column(name = "AMOUNT")
-	public long getAmount() {
-		return this.amount;
+    @Column(name = "DESCRIPTION")
+	public String getDescription() {
+		return this.description;
 	}
-    
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 	public void setDate(Date date) {
 		this.date = date;
 	}

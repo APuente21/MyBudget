@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import com.budget.domain.BudgetEntry;
 import com.budget.domain.Category;
 import com.budget.domain.Phone;
+import com.budget.domain.Request;
 import com.budget.domain.User;
 import com.budget.ser.BudgetService;
 import com.twilio.Twilio;
@@ -22,6 +23,8 @@ public class SMSHandler {
 	  private String txtNumber;
 	  private String txtBody;
 	  private Phone phone;
+	  private String msg;
+	  private Request request;
 	  
 	  
 	  public SMSHandler() {}
@@ -30,17 +33,41 @@ public class SMSHandler {
 		  this.txtNumber = number;
 		  this.txtBody = body;
 		  this.budgetService = bService;
-		  
+		  this.request = new Request(body);
+		  this.request.loadRequest();
 		  //Get Phone and User
 		  String[] digits = Phone.getDigits(txtNumber);
 		  phone = budgetService.findPhone(digits[0], digits[1], digits[2]);
 		  user = budgetService.findUserByNumber(phone);
 		  
+		  
 	  }
 	  
+	  public void processRequest() {
+		  if(request.hasException())
+			  sendConfirmationSMS(request.getException());
+		  else {
+			  if(request.isBalanceRequest()) {
+				  sendConfirmationSMS("test");
+				  
+				  //write code to get balance request
+			  } else {
+				  //write code to save budget category
+			  }
+			  
+		  }
+	  }
+	  
+	  public boolean saveEntry() {
+		  this.bEntry = new BudgetEntry();
+		  bEntry.setAmount(this.request.getAmount());
+		  bEntry.setUser(this.user);
+		  bEntry.setDescription(this.request.getDescription());
+		  return false;
+	  }
 
-	  public void sendConfirmationSMS() {
-		  String msg = "Your entry was successfully loaded";
+	  public void sendConfirmationSMS(String msg) {
+		  this.msg = "msg";
 		  Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
 		  Message message = Message.creator(
