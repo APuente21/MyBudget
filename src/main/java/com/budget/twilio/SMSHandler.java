@@ -1,12 +1,6 @@
 package com.budget.twilio;
 
 import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-
 import com.budget.domain.BudgetEntry;
 import com.budget.domain.Category;
 import com.budget.domain.Phone;
@@ -29,8 +23,7 @@ public class SMSHandler {
 	  private Phone phone;
 	  private String msg;
 	  private Request request;
-	  
-	  
+	    
 	  public SMSHandler() {}
 	  
 	  public SMSHandler(String number, String body, BudgetService bService) {
@@ -56,7 +49,10 @@ public class SMSHandler {
 				  
 				  //write code to get balance request
 			  } else {
-				  //write code to save budget category
+				  if (saveEntry())
+					  sendConfirmationSMS("Your request was successfully processed");
+				  else
+					  sendConfirmationSMS("We were unable to process your request");
 			  }
 			  
 		  }
@@ -88,10 +84,7 @@ public class SMSHandler {
 		  
 		 Date date = new Date();
 		 bEntry.setDate(date);
-
 		 bEntry = budgetService.saveBudgetEntry(bEntry);
-		 
-		 bEntry.setUser(this.user);
 		 return (bEntry== null)? false: true;
 	  }
 

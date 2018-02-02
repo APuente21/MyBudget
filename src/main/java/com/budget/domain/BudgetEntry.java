@@ -21,8 +21,8 @@ import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
-@NamedQuery(name="BudgetEntry.findEntriesByUser", 
-query="select distinct b from BudgetEntry b left join fetch b.category c where b.user.id = :id")
+@NamedQuery(name="BudgetEntry.findEntriesByNumber", 
+query="select b from BudgetEntry b left join fetch b.category c left join fetch b.user u left join b.phone p where p = :phone")
 })
 @Table(name = "BUDGET_ENTRIES")
 public class BudgetEntry {
