@@ -27,10 +27,14 @@ public class Request {
     	} catch (IllegalArgumentException e) {
     		this.hasException = true;
     		exceptionMsg = e.getMessage();
+
+    	} catch (IndexOutOfBoundsException e) {
+    		this.hasException = true;
+    		exceptionMsg = e.getMessage();
     	}
 	}
 	
-	private void setAmount() throws IllegalArgumentException{
+	private void setAmount() throws IllegalArgumentException, IndexOutOfBoundsException{
 		String digit = this.request.substring(0, this.request.indexOf(' '));
 		if (Character.isDigit(digit.charAt(0)) || digit.charAt(0) == '.')
 			this.amount= (Double.valueOf(digit));
