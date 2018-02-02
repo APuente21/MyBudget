@@ -10,17 +10,22 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+@NamedQuery(name="Category.findCategory", 
+query="select c from Category c where c.name = :name")
+})
 @Table(name = "CATEGORIES")
 public class Category {
 	private long id;
-	private String name;
-	private Set<BudgetEntry> entry = new HashSet<BudgetEntry>();
+	private String name;	
 	
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -41,15 +46,10 @@ public class Category {
 		return this.name;
 	}
     
-	 @OneToMany(mappedBy = "category", cascade=CascadeType.ALL,
-			 orphanRemoval= true)
-	 public Set<BudgetEntry> getBudgetEntry(){
-		 return this.entry;
-	 }
-	 
-	 public void setBudgetEntry(Set<BudgetEntry> entry) {
-		 this.entry = entry;
-	 }
+    public boolean equals(Category input) {
+    	return name.toLowerCase().equals(input.getName().toLowerCase());
+    }
+    
     
     public String toString() {
     	return "Category: " + name;

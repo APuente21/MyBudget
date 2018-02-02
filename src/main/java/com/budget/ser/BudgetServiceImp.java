@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.budget.dao.BudgetDao;
 import com.budget.domain.BudgetEntry;
+import com.budget.domain.Category;
 import com.budget.domain.Phone;
 import com.budget.domain.User;
 	
@@ -20,11 +21,7 @@ public class BudgetServiceImp implements BudgetService {
 		this.budgetDao= budgetDao;
 	}
 	
-	@Transactional
-	public List<BudgetEntry> findAllEntries() {
-		return this.budgetDao.findAllEntries();
-	}
-	
+	//|||||||||||||||||||||||||||||||||||||||RELATED TO USER CLASS||||||||||||||||||||||||||||||||||||||||||||||
 	@Transactional
 	public List<User> findAllUsers() {
 		return this.budgetDao.findAllUsers();
@@ -32,10 +29,6 @@ public class BudgetServiceImp implements BudgetService {
 	
 	public User saveUser(User user) {
 		return this.budgetDao.saveUser(user);
-	}
-	
-	public Phone savePhone(Phone phone) {
-		return this.budgetDao.savePhone(phone);
 	}
 
 	@Transactional
@@ -48,14 +41,44 @@ public class BudgetServiceImp implements BudgetService {
 		return this.budgetDao.findUserByNumber(number);
 	}
 
+	//|||||||||||||||||||||||||||||||||||||||RELATED TO BUDGETENTRY CLASS||||||||||||||||||||||||||||||||||||||||||||||
+	
 	@Transactional
-	public Phone findPhone(String cCode, String aCode, String number) {
-		return this.budgetDao.findPhone(cCode, aCode, number);
+	public List<BudgetEntry> findAllEntries() {
+		return this.budgetDao.findAllEntries();
 	}
 	
 	@Transactional
 	public List<BudgetEntry> findEntriesByUser(long id) {
 		return this.budgetDao.findEntriesByUser(id);
+	}
+	
+	@Transactional
+	public BudgetEntry saveBudgetEntry(BudgetEntry bEntry) {
+		return this.budgetDao.saveBudgetEntry(bEntry);
+	}
+	
+	//|||||||||||||||||||||||||||||||||||||||RELATED TO PHONE CLASS||||||||||||||||||||||||||||||||||||||||||||||
+	
+	@Transactional
+	public Phone findPhone(String cCode, String aCode, String number) {
+		return this.budgetDao.findPhone(cCode, aCode, number);
+	}
+	
+	public Phone savePhone(Phone phone) {
+		return this.budgetDao.savePhone(phone);
+	}
+	
+	//|||||||||||||||||||||||||||||||||||||||RELATED TO CATEGORY CLASS||||||||||||||||||||||||||||||||||||||||||||||
+	
+	@Transactional
+	public Category findCategory(String name) {
+		return this.budgetDao.findCategory(name);
+	}
+	
+	@Transactional
+	public Category saveCategory(Category category) {
+		return this.budgetDao.saveCategory(category);
 	}
 
 }

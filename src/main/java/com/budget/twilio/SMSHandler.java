@@ -1,5 +1,9 @@
 package com.budget.twilio;
 
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -59,11 +63,36 @@ public class SMSHandler {
 	  }
 	  
 	  public boolean saveEntry() {
-		  this.bEntry = new BudgetEntry();
-		  bEntry.setAmount(this.request.getAmount());
-		  bEntry.setUser(this.user);
-		  bEntry.setDescription(this.request.getDescription());
-		  return false;
+		 this.bEntry = new BudgetEntry();
+		 bEntry.setAmount(this.request.getAmount());
+		 bEntry.setUser(this.user);
+		 bEntry.setDescription(this.request.getDescription());
+		  
+		  /*
+		   * Check if request has a category. If it does, check the database if the category already exisits. If it does
+		   * add the category to the budgetentry class. If it doesn't exist, then create a new category class, and save it 
+		   * to the database, after which we add it to the budgetEntry class
+		   */
+		 if(request.hasCategory()) {
+			 category = budgetService.findCategory(request.getCategory().toUpperCase());
+			 if (category == null) {
+				 category = new Category();
+				 category.setName(request.getCategory().toUpperCase());
+				 category = budgetService.saveCategory(category);
+				 bEntry.setCategory(category);
+			 } else {
+				 bEntry.setCategory(category);
+			 }
+			 
+		 }
+		  
+		 Date date = new Date();
+		 bEntry.setDate(date);
+
+		 bEntry = budgetService.saveBudgetEntry(bEntry);
+		 
+		 bEntry.setUser(this.user);
+		 return (bEntry== null)? false: true;
 	  }
 
 	  public void sendConfirmationSMS(String msg) {
