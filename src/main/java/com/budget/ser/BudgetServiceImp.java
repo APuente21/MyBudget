@@ -48,10 +48,12 @@ public class BudgetServiceImp implements BudgetService {
 		return this.budgetDao.findAllEntries();
 	}
 	
+	/*
 	@Transactional
 	public List<BudgetEntry> findEntriesByUser(long id) {
 		return this.budgetDao.findEntriesByUser(id);
 	}
+	*/
 	
 	@Transactional
 	public BudgetEntry saveBudgetEntry(BudgetEntry bEntry) {

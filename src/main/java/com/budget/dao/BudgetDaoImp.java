@@ -48,6 +48,7 @@ public class BudgetDaoImp implements BudgetDao {
 	
 	//|||||||||||||||||||||||||||||||||||||||RELATED TO BUDGET ENTRY CLASS||||||||||||||||||||||||||||||||||||||||||||||
 	
+	/*
     @SuppressWarnings("unchecked")
 	public List<BudgetEntry> findEntriesByUser(long id) {
 		return sessionFactory.getCurrentSession()
@@ -55,6 +56,7 @@ public class BudgetDaoImp implements BudgetDao {
                 .setParameter("id", id)
                 .list();
 	}
+	*/
     
 	@SuppressWarnings("unchecked")
 	public List<BudgetEntry> findAllEntries() {

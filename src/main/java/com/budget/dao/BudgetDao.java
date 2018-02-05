@@ -16,7 +16,7 @@ public interface BudgetDao {
 	User saveUser(User user);
 	
 	//CRUD operations related to the BudgetEntry class
-	List<BudgetEntry> findEntriesByUser(long id);
+	//List<BudgetEntry> findEntriesByUser(long id);
 	List<BudgetEntry> findAllEntries();
 	BudgetEntry saveBudgetEntry(BudgetEntry bEntry);
 	

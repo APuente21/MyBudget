@@ -17,7 +17,7 @@ public interface BudgetService {
 	
 	//Related to BudgetEntry Class
 	List<BudgetEntry> findAllEntries();
-	List<BudgetEntry> findEntriesByUser(long id);
+	//List<BudgetEntry> findEntriesByUser(long id);
 	BudgetEntry saveBudgetEntry(BudgetEntry bEntry);
 	
 	//Related to Phone Class
