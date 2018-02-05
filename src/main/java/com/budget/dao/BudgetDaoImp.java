@@ -1,9 +1,16 @@
 package com.budget.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,14 +56,38 @@ public class BudgetDaoImp implements BudgetDao {
 	//|||||||||||||||||||||||||||||||||||||||RELATED TO BUDGET ENTRY CLASS||||||||||||||||||||||||||||||||||||||||||||||
 	
 	/*
+	 * Retrives BudgetEntries, for a user, grouped by category
+	 */
     @SuppressWarnings("unchecked")
-	public List<BudgetEntry> findEntriesByUser(long id) {
-		return sessionFactory.getCurrentSession()
-                .getNamedQuery("BudgetEntry.findEntriesByUser")
-                .setParameter("id", id)
-                .list();
+	public List<Object[]> findEntriesByUser(User user) {
+    	Session session= sessionFactory.getCurrentSession();
+    	List result = session.createCriteria(BudgetEntry.class)
+    			.add(Restrictions.eq("user", user))
+    			.setProjection(Projections.projectionList()
+    					.add(Projections.groupProperty("category"))
+    					.add(Projections.sum("amount"))
+    					)
+    	.list();
+    	
+    	return result;
 	}
-	*/
+	
+	//Retrievies current months budgetEntries for a user, grouped by category
+    @SuppressWarnings("unchecked")
+	public List<Object[]> findEntriesByUserDate(User user, Date date) {
+    	Session session= sessionFactory.getCurrentSession();
+    	List result = session.createCriteria(BudgetEntry.class)
+    			.add(Restrictions.eq("user", user))
+    			.add(Restrictions.ge("date", date))
+    			.setProjection(Projections.projectionList()
+    					.add(Projections.groupProperty("category"))
+    					.add(Projections.sum("amount"))
+    					)
+    	.list();
+    	
+    	return result;
+	}
+	
     
 	@SuppressWarnings("unchecked")
 	public List<BudgetEntry> findAllEntries() {

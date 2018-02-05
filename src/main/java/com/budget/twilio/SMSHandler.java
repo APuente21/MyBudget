@@ -1,6 +1,7 @@
 package com.budget.twilio;
 
 import java.util.Date;
+import java.util.List;
 import com.budget.domain.BudgetEntry;
 import com.budget.domain.Category;
 import com.budget.domain.Phone;
@@ -45,9 +46,7 @@ public class SMSHandler {
 			  sendConfirmationSMS(request.getException());
 		  else {
 			  if(request.isBalanceRequest()) {
-				  sendConfirmationSMS("test");
-				  
-				  //write code to get balance request
+				  sendConfirmationSMS(getBalance());
 			  } else {
 				  if (saveEntry())
 					  sendConfirmationSMS("Your request was successfully processed");
@@ -56,6 +55,28 @@ public class SMSHandler {
 			  }
 			  
 		  }
+	  }
+	  
+	  public String getBalance() {
+	        Date d = new Date();
+	        d.setDate(1);
+	   
+	        List<Object[]> test = budgetService.findEntriesByUserDate(user, d);
+	        double total = 0;
+	        String response = "";
+	        for (Object[] input: test) {
+	        	if(input[0] == null) {
+	        		response = response + "DEFAULT: $" + input[1].toString() + "\n";
+	        		total = total + (Double)input[1];
+	        	} else {
+	        		response = response + ((Category)input[0]).getName() + ": $" + (String) input[1].toString() + "\n";
+	        		total = total + (Double)input[1];
+	        	}
+	        }
+	        
+	        response = response + "\nTotal: $" + total;
+	        return response;
+	        
 	  }
 	  
 	  public boolean saveEntry() {

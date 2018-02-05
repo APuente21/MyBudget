@@ -2,6 +2,7 @@
 
 package com.budget.controller;
 
+import java.util.Date;
 import java.util.List;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -88,13 +89,11 @@ public class BudgetController {
     public ModelAndView get() {
         logger.info("Listing contacts");
        
-
         List<User> users = budgetService.findAllUsers();
         logger.info("Listing contacts");
       
         return new ModelAndView("list", "users", users);
     }
-    
     
 	@Autowired(required=true)
 	@Qualifier(value="budgetService")

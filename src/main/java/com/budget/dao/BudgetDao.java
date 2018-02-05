@@ -1,5 +1,6 @@
 package com.budget.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.budget.domain.BudgetEntry;
@@ -16,7 +17,8 @@ public interface BudgetDao {
 	User saveUser(User user);
 	
 	//CRUD operations related to the BudgetEntry class
-	//List<BudgetEntry> findEntriesByUser(long id);
+	List<Object[]> findEntriesByUser(User user);
+	List<Object[]> findEntriesByUserDate(User user, Date date);
 	List<BudgetEntry> findAllEntries();
 	BudgetEntry saveBudgetEntry(BudgetEntry bEntry);
 	

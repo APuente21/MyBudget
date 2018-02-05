@@ -1,5 +1,6 @@
 package com.budget.ser;
 
+import java.util.Date;
 import java.util.List;
 
 import com.budget.domain.BudgetEntry;
@@ -17,7 +18,8 @@ public interface BudgetService {
 	
 	//Related to BudgetEntry Class
 	List<BudgetEntry> findAllEntries();
-	//List<BudgetEntry> findEntriesByUser(long id);
+	List<Object[]> findEntriesByUser(User user);
+	List<Object[]> findEntriesByUserDate(User user, Date date);
 	BudgetEntry saveBudgetEntry(BudgetEntry bEntry);
 	
 	//Related to Phone Class

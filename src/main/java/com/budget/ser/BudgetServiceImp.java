@@ -1,5 +1,6 @@
 package com.budget.ser;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -48,12 +49,17 @@ public class BudgetServiceImp implements BudgetService {
 		return this.budgetDao.findAllEntries();
 	}
 	
-	/*
+	
 	@Transactional
-	public List<BudgetEntry> findEntriesByUser(long id) {
-		return this.budgetDao.findEntriesByUser(id);
+	public List<Object[]> findEntriesByUser(User user) {
+		return this.budgetDao.findEntriesByUser(user);
 	}
-	*/
+	
+	@Transactional
+	public List<Object[]> findEntriesByUserDate(User user, Date date) {
+		return this.budgetDao.findEntriesByUserDate(user, date);
+	}
+	
 	
 	@Transactional
 	public BudgetEntry saveBudgetEntry(BudgetEntry bEntry) {
