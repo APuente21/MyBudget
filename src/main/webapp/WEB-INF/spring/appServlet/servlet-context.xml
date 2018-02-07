@@ -5,22 +5,19 @@
              xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:p="http://www.springframework.org/schema/p"
              xmlns:context="http://www.springframework.org/schema/context"
-             xmlns:security="http://www.springframework.org/schema/security"
              xsi:schemaLocation="http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/beans 
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context 
-        http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/security
-        http://www.springframework.org/schema/security/spring-security.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
 
     <!-- The <annotation-driven> tag enables the support of annotation configuration 
             for Spring MVC controllers, as well as enabling Spring type conversion 
             and formatting support.
     -->
     <mvc:annotation-driven />
-	
 	<!-- The <resources> tag defines the static resources (e.g, CSS, JavaScript, and images) 
 	     and their locations so Spring MVC can improve the performance in serving those files.
 	     Spring MVC looks at the "location" attribute to find and return static resources.
@@ -28,7 +25,7 @@
 	     "mapping" specifies under what uri will resources be accessible on the web
 	-->
     
-    <mvc:resources location="/resources/" mapping="/resources/**"/>
+    <mvc:resources location="/" mapping="/resources/**" />
 
 
     <!-- For the ViewResolver interface, we will be using the InternalResourceViewResolver class as the

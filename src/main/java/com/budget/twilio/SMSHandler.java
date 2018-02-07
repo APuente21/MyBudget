@@ -36,9 +36,7 @@ public class SMSHandler {
 		  //Get Phone and User
 		  String[] digits = Phone.getDigits(txtNumber);
 		  phone = budgetService.findPhone(digits[0], digits[1], digits[2]);
-		  user = budgetService.findUserByNumber(phone);
-		  
-		  
+		  user = budgetService.findUserByNumber(phone);		  
 	  }
 	  
 	  public void processRequest() {
@@ -57,7 +55,8 @@ public class SMSHandler {
 		  }
 	  }
 	  
-	  public String getBalance() {
+	  @SuppressWarnings("deprecation")
+	public String getBalance() {
 	        Date d = new Date();
 	        d.setDate(1);
 	   

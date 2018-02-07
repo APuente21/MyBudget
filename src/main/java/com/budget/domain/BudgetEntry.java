@@ -20,12 +20,6 @@ import javax.persistence.TemporalType;
 
 
 @Entity
-/*
-@NamedQueries({
-@NamedQuery(name="BudgetEntry.findEntriesByUser", 
-query="select b from BudgetEntry b where b.user = :user and where b.date > :date")
-})
-*/
 @Table(name = "BUDGET_ENTRIES")
 public class BudgetEntry {
 	private long id;
