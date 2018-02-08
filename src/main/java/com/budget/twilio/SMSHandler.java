@@ -13,8 +13,8 @@ import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
 public class SMSHandler {
-	  public static final String ACCOUNT_SID = "";
-	  public static final String AUTH_TOKEN = "";
+	  public static final String ACCOUNT_SID = "ACd5c03dde5f56202f6422d1becf6662d3";
+	  public static final String AUTH_TOKEN = "651c689c81408b303876af7362f576b7";
 	  private BudgetService budgetService;
 	  private User user;
 	  private BudgetEntry bEntry;
@@ -24,8 +24,14 @@ public class SMSHandler {
 	  private Phone phone;
 	  private String msg;
 	  private Request request;
+	  private boolean newUser= false;
 	    
 	  public SMSHandler() {}
+	  
+	  public SMSHandler(String number, boolean newUser) {
+		  this.txtNumber = number;  
+		  this.newUser = newUser;
+	  }
 	  
 	  public SMSHandler(String number, String body, BudgetService bService) {
 		  this.txtNumber = number;
@@ -43,7 +49,9 @@ public class SMSHandler {
 		  if(request.hasException())
 			  sendConfirmationSMS(request.getException());
 		  else {
-			  if(request.isBalanceRequest()) {
+			  if(this.newUser) {
+				  sendConfirmationSMS("Welcome to MyBudget!!");
+			  } else if(request.isBalanceRequest()) {
 				  sendConfirmationSMS(getBalance());
 			  } else {
 				  if (saveEntry())

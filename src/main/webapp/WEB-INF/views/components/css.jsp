@@ -5,6 +5,7 @@
         background-color:  darkred;
         text-align: center !important;
         padding: 20px 0px 20px 0px;
+        margin-bottom: 50px;
     }
 
     .myHeader a{
@@ -15,11 +16,16 @@
         font-size: 100%;
         font-weight: 700;    
     }
-    
+    /*
     .wrapper{
         margin-left: auto;
         margin-right: auto;
         max-width: 60%;
+    }
+    */
+    
+    .has-error{
+        color: green;
     }
     
     .logInForm {
@@ -35,8 +41,13 @@
        text-align: center;
     }
     
-    .foot a {
+    .footer a {
         text-decoration: none;
         color: white;
+    }
+    
+    #email.errors{
+        background-color: aqua;
+        margin: 10px;
     }
 </style>

@@ -24,6 +24,7 @@ import com.budget.domain.Phone;
 import com.budget.domain.User;
 import com.budget.domain.User_Phone_Wrapper;
 import com.budget.ser.BudgetService;
+import com.budget.twilio.SMSHandler;
 import com.budget.validator.LogInFormValidator;
 import com.budget.validator.UserFormValidator;
 
@@ -81,12 +82,16 @@ public class BudgetController {
     	    user.setNumber(phone);
     	    
     	    budgetService.saveUser(user);
-   	    	return "redirect:/users";
+    	    
+    	    SMSHandler smsHandler = new SMSHandler(phone.toString(), true);
+    	    smsHandler.processRequest();
+   	    	return "redirect:/welcome";
 
     }
-      
+     
+    
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public ModelAndView get() {
+    public ModelAndView getUsers() {
         logger.info("Listing contacts");
        
         List<User> users = budgetService.findAllUsers();
