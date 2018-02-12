@@ -18,6 +18,7 @@
                             <div class="form-group ${status.error ? 'has-error' : ''}">
                                 <div class="col-sm-offset-2 col-sm-5">
                                     <form:input path="email" type="text" class="form-control " id="email" placeholder="Email" />
+                                    
                                 </div>
                             </div>
                         </spring:bind>
@@ -26,30 +27,40 @@
                             <div class="form-group ${status.error ? 'has-error' : ''}">
                                 <div class="col-sm-offset-2 col-sm-5">
                                     <form:input path="password" type="text" class="form-control " id="password" placeholder="Password" />
+                                    
                                 </div>
                             </div>
                         </spring:bind>
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-5">
-                                <button type="submit" id="bttn" class="btn-lg btn-primary pull-righ">Sign In</button>
+                                <button type="submit" id="bttn" class="btn-lg btn pull-righ">Sign In</button>
                                 <a href="register">Register</a>
                             </div>
                         </div>
-
-                        <div > 
-                            <div class="myErrors">
-                                <form:errors path="email" class="control-label" />
+                        
+                        <spring:bind path="email">
+                            <div class="form-group ${status.error ? 'has-error alert alert-danger' : ''}">
+                                <div class="col-sm-offset-2 col-sm-5">
+                                    <form:errors path="email" class="control-label" />
+                                </div>
                             </div>
-
-                            <div>
-                                <form:errors path="password" class="control-label" />
+                        </spring:bind>
+                        <spring:bind path="password">
+                             <div class="form-group ${status.error ? 'has-error alert alert-danger' : ''}">
+                                <div class="col-sm-offset-2 col-sm-5">
+                                    <form:errors path="password" class="control-label" /> 
+                                </div>
                             </div>
-
-                            <div>
-                                <form:errors path="number" class="control-label" />
+                        </spring:bind>  
+                        <spring:bind path="number">
+                             <div class="form-group ${status.error ? 'has-error alert alert-danger' : ''}">
+                                <div class="col-sm-offset-2 col-sm-5">
+                                    <form:errors path="number" class="control-label" />
+                                </div>
                             </div>
-                        </div>
+                        </spring:bind>   
+                            
 
                     </form:form>
                 </div>

@@ -1,8 +1,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
     
 <style>
+    body{
+        font-family: monospace
+    }
+    
     .myHeader{
-        background-color:  darkred;
+        background-color: #333333;;
         text-align: center !important;
         padding: 20px 0px 20px 0px;
         margin-bottom: 50px;
@@ -25,7 +29,8 @@
     */
     
     .has-error{
-        color: green;
+        color: black;
+        
     }
     
     .logInForm {
@@ -36,7 +41,7 @@
        position: fixed;
        left: 0;
        bottom: 0;
-       background-color: black;
+       background-color: #333333;;
        color: white;
        text-align: center;
     }

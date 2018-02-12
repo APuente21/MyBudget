@@ -15,6 +15,10 @@ public class UserFormValidator implements Validator {
 	@Autowired
 	@Qualifier("emailValidator")
 	public EmailValidator emailValidator;
+	
+	@Autowired
+	@Qualifier("phoneValidator")
+	public PhoneValidator phoneValidator;
 
 	public boolean supports(Class<?> clazz) {
 		return User_Phone_Wrapper.class.equals(clazz);
@@ -37,6 +41,33 @@ public class UserFormValidator implements Validator {
 		if(!emailValidator.valid(wrapper.getEmail())){
 			errors.rejectValue("email", "Pattern.email");
 		}
+		
+		boolean ccError = errors.hasFieldErrors("countryCode");
+		boolean acError = errors.hasFieldErrors("areaCode");
+		boolean nError = errors.hasFieldErrors("number");
+		
+		if(!ccError & !acError & !nError) {
+			phoneValidator.setCountryCode(wrapper.getCountryCode());
+			phoneValidator.setAreaCode(wrapper.getAreaCode());
+			phoneValidator.setNumber(wrapper.getNumber());
+		
+			if(!phoneValidator.validCountryCode())
+				errors.rejectValue("countryCode", "Pattern.userForm.countryCode");
+			else 
+				wrapper.setCountryCode(phoneValidator.getCountry());
+			
+			
+			if(!phoneValidator.validAreaCode())
+				errors.rejectValue("areaCode", "Pattern.userForm.areaCode");
+			else
+				wrapper.setAreaCode(phoneValidator.getArea());
+			
+			if(!phoneValidator.validNumber())
+				errors.rejectValue("number", "Pattern.userForm.number");
+			else
+				wrapper.setNumber(phoneValidator.getNumber());
+		}
+		boolean s = false;
 		
 	}
 

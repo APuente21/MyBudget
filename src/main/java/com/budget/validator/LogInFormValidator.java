@@ -31,10 +31,14 @@ public class LogInFormValidator implements Validator {
 		User user = (User) target;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty.email");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty.password");
-
-		if(!emailValidator.valid(user.getEmail())){
-			errors.rejectValue("email", "Pattern.email");
+		
+		boolean emailError = errors.hasFieldErrors("email");
+		if(!emailError) {
+			if(!emailValidator.valid(user.getEmail())){
+				errors.rejectValue("email", "Pattern.email");
+			}
 		}
+
 		
 
 	}
