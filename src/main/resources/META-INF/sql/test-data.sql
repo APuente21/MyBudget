@@ -9,7 +9,7 @@ insert into MyBudget.PHONES (country_code, area_code, number) values (1, 212, 66
 insert into MyBudget.PHONES (country_code, area_code, number) values (1, 917, 2239666);
 insert into MyBudget.PHONES (country_code, area_code, number) values (1, 417, 3219676);
 insert into MyBudget.PHONES (country_code, area_code, number) values (1, 718, 4521253);
-insert into MyBudget.PHONES (country_code, area_code, number) values (1, 516, 8301709);
+insert into MyBudget.PHONES (country_code, area_code, number) values (1, 516, 8301708);
 
 insert into MyBudget.USERS (first_name, last_name, email, password, phone_id) values ('Andres', 'Bravo', 'abrovo@gmail.com', 'brabopass', 5);
 insert into MyBudget.USERS (first_name, last_name, email, password, phone_id) values ('Brian', 'Porter', 'bporter@gmail.com', 'porterpass', 1);

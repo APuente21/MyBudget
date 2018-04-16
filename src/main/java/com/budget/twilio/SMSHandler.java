@@ -64,7 +64,7 @@ public class SMSHandler {
 	  }
 	  
 	  @SuppressWarnings("deprecation")
-	public String getBalance() {
+	  public String getBalance() {
 	        Date d = new Date();
 	        d.setDate(1);
 	   
@@ -128,6 +128,13 @@ public class SMSHandler {
 		  System.out.println(message.getSid());
 	  } 
 	  
-
+	  public Category getCategory(){
+		  return this.category;
+	  }
+	  
+	  public boolean isBudgetServiceNull(){
+		  boolean test = this.budgetService == null ? true: false;
+		  return this.budgetService == null ? true: false;
+	  }
 	
 }
