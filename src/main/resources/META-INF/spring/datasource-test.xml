@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jdbc
+        http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+        http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+        http://www.springframework.org/schema/data/jpa
+        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+       
+       
+	<bean destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource" id="dataSource">
+		<property value="org.h2.Driver" name="driverClassName"/>
+		<property value="jdbc:h2:mem:db" name="url"/>
+		<property value="sa" name="username"/>
+		<property value="sa" name="password"/>
+	</bean>
+	
+	<bean id="dbInit" class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
+        <property name="scripts">
+            <list>
+                <value>classpath:META-INF/spring/h2schema.sql</value>
+                <value>classpath:META-INF/spring/test-data.sql</value>
+            </list>
+        </property>
+        <property name="continueOnError" value="true"/>
+    </bean>
+     
+    <bean id="dbCleanup" class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
+        <property name="scripts">
+            <list>
+                <value>META-INF/spring/h2schema.sql</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="startupScripts" class="org.springframework.jdbc.datasource.init.DataSourceInitializer">
+        <property name="dataSource"><ref bean="dataSource"/></property>
+        <property name="databasePopulator"><ref bean="dbInit"/></property>
+        <property name="databaseCleaner"><ref bean="dbCleanup"/></property>
+    </bean>
+	
+
+	<bean class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" id="sessionFactory">
+		<property name="dataSource" ref="dataSource"/>
+		<property name = "packagesToScan" value="com.budget" />
+		<property name="hibernateProperties">
+		<props>
+			<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+			<prop key="hibernate.show_sql">true</prop>
+		</props>
+		</property>
+	</bean>
+
+	<context:component-scan base-package="com.budget"/>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+	<bean class="org.springframework.orm.hibernate4.HibernateTransactionManager" id="transactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean class="com.budget.dao.BudgetDaoImp" id="budgetDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<bean class="com.budget.ser.BudgetServiceImp" id="budgetService">
+		<property name="budgetDao" ref="budgetDao"/>
+	</bean>
+
+	<context:annotation-config/>
+	
+</beans>
