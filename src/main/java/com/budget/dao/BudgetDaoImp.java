@@ -53,6 +53,10 @@ public class BudgetDaoImp implements BudgetDao {
                 .uniqueResult();
 	}
 	
+	public void deleteUser(User user) {
+		sessionFactory.getCurrentSession().delete(user);
+	}
+	
 	//|||||||||||||||||||||||||||||||||||||||RELATED TO BUDGET ENTRY CLASS||||||||||||||||||||||||||||||||||||||||||||||
 	
 	/*

@@ -15,18 +15,23 @@ public interface BudgetService {
 	User findUserByNumber(Phone number);
 	User saveUser(User user);
 	List<User> findAllUsers();
+	void deleteUser(User user);
+	//need to create a delete user
 	
 	//Related to BudgetEntry Class
 	List<BudgetEntry> findAllEntries();
 	List<Object[]> findEntriesByUser(User user);
 	List<Object[]> findEntriesByUserDate(User user, Date date);
 	BudgetEntry saveBudgetEntry(BudgetEntry bEntry);
+	//need to create a delete BE
 	
 	//Related to Phone Class
 	Phone savePhone(Phone phone);
 	Phone findPhone(String cCode, String aCode, String number);
+	//need to create a delete phone
 
 	//Related to Category Class
 	Category findCategory(String name);
 	Category saveCategory(Category category);
+	//need to create a delete category
 }

@@ -38,6 +38,11 @@ public class BudgetServiceImp implements BudgetService {
 	}
 	
 	@Transactional
+	public void deleteUser(User user) {
+		this.budgetDao.deleteUser(user);
+	}
+	
+	@Transactional
 	public User findUserByNumber(Phone number) {
 		return this.budgetDao.findUserByNumber(number);
 	}

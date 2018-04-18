@@ -30,8 +30,8 @@
 	<bean id="dbInit" class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
         <property name="scripts">
             <list>
-                <value>classpath:META-INF/spring/h2schema.sql</value>
-                <value>classpath:META-INF/spring/test-data.sql</value>
+                <value>classpath:META-INF/sql/h2schema.sql</value>
+                <value>classpath:META-INF/sql/test-data.sql</value>
             </list>
         </property>
         <property name="continueOnError" value="true"/>

@@ -15,6 +15,7 @@ public interface BudgetDao {
 	User findUser(String email, String password);
 	User findUserByNumber(Phone number);
 	User saveUser(User user);
+	void deleteUser(User user);
 	
 	//CRUD operations related to the BudgetEntry class
 	List<Object[]> findEntriesByUser(User user);
