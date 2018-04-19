@@ -82,6 +82,12 @@ public class BudgetServiceImp implements BudgetService {
 		return this.budgetDao.savePhone(phone);
 	}
 	
+	@Transactional
+	public void deletePhone(Phone phone) {
+		this.budgetDao.deletePhone(phone);
+	}
+	
+	
 	//|||||||||||||||||||||||||||||||||||||||RELATED TO CATEGORY CLASS||||||||||||||||||||||||||||||||||||||||||||||
 	
 	@Transactional

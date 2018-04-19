@@ -26,6 +26,7 @@ public interface BudgetDao {
 	//CRUD operations related to the Phone class
 	Phone savePhone(Phone phone);
 	Phone findPhone(String cCode, String aCode, String number);
+	void deletePhone(Phone phone);
 	
 	//CRUD operations related to the Category class
 	Category findCategory(String name);

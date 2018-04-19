@@ -122,6 +122,10 @@ public class BudgetDaoImp implements BudgetDao {
                 .uniqueResult();
 	}
     
+	public void deletePhone(Phone phone) {
+		sessionFactory.getCurrentSession().delete(phone);
+	}
+    
   //|||||||||||||||||||||||||||||||||||||||RELATED TO CATEGORY CLASS||||||||||||||||||||||||||||||||||||||||||||||
     
     @SuppressWarnings("unchecked")

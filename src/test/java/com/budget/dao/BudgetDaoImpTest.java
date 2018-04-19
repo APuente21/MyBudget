@@ -14,6 +14,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.budget.domain.BudgetEntry;
+import com.budget.domain.Category;
 import com.budget.domain.Phone;
 import com.budget.domain.User;
 import com.budget.ser.BudgetService;
@@ -30,9 +32,15 @@ public class BudgetDaoImpTest {
 	
 	//|||||||||||||||||||||||||||TEST RELATED TO USERS|||||||||||||||||||||||||||
 	@Test
-	public void findUserTest() {
+	public void findExisitingUserTest() {
 		User testUser = budgetService.findUser("abrovo@gmail.com", "brabopass");
 		assertEquals("Andres", testUser.getFirstName());
+	}
+	
+	@Test 
+	public void findUserNotInDBTest() {
+		User testUser = budgetService.findUser("missing@gmail.com", "empty");
+		assertNull(testUser);
 	}
 	
 	@Test
@@ -80,6 +88,12 @@ public class BudgetDaoImpTest {
 	}
 	
 	@Test
+	public void findPhoneNotInDBTest() {
+		Phone phone = budgetService.findPhone("1", "222", "8301708");
+		assertNull(phone);
+	}
+	
+	@Test
 	public void savePhoneTest() {
 		Phone phone = new Phone("1", "516", "8301799");
 		phone = budgetService.savePhone(phone);
@@ -87,6 +101,26 @@ public class BudgetDaoImpTest {
 		assertEquals("8301799", savedPhone.getNumber());
 	}
 	
+	@Test
+	public void deletePhoneTest() {
+		Phone phone = new Phone("1", "516", "8306699");
+		phone = budgetService.savePhone(phone);
+		budgetService.deletePhone(phone);
+		Phone deletedPhone = budgetService.findPhone("1", "516", "8306699");
+		assertNull(deletedPhone);
+	}
+	
 	//|||||||||||||||||||||||||||TEST RELATED TO CATEGORY|||||||||||||||||||||||||||
 	
+	
+	
+	//|||||||||||||||||||||||||||TEST RELATED TO BUDGET ENTRY|||||||||||||||||||||||||||
+	
+	@Test
+	public void findAllBudgetEntriesByCategori() {
+		Category category = budgetService.findCategory("Dinning");
+		List<BudgetEntry> entries = budgetService.findAllEntriesByCategory();
+	}
+
+
 }

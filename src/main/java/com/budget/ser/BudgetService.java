@@ -28,7 +28,7 @@ public interface BudgetService {
 	//Related to Phone Class
 	Phone savePhone(Phone phone);
 	Phone findPhone(String cCode, String aCode, String number);
-	//need to create a delete phone
+	void deletePhone(Phone phone);
 
 	//Related to Category Class
 	Category findCategory(String name);
