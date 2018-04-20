@@ -1,9 +1,9 @@
 
-insert into CATEGORIES (name) values ('Dinning');
-insert into CATEGORIES (name) values ('Travel');
-insert into CATEGORIES (name) values ('Entertainment');
-insert into CATEGORIES (name) values ('Car');
-insert into CATEGORIES (name) values ('Health');
+insert into CATEGORIES (name) values ('DINNING');
+insert into CATEGORIES (name) values ('TRAVEL');
+insert into CATEGORIES (name) values ('ENTERTAINMENT');
+insert into CATEGORIES (name) values ('CAR');
+insert into CATEGORIES (name) values ('HEALTH');
 
 insert into PHONES (country_code, area_code, number) values (1, 212, 6636659);
 insert into PHONES (country_code, area_code, number) values (1, 917, 2239666);

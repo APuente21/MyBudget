@@ -13,24 +13,30 @@
 
         <div class="container">
             <h1>All Users</h1>
-        </div>
+        
 
-        <table width="50%">
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-            </tr>
-            <c:forEach items="${users}" var="user">
+        <table class="table" width="50%">
+            <thead class="thead-dark">
                 <tr>
-                    <td>${user.firstName}</td>
-                    <td>${user.lastName}</td>
-                    <td>${user.email}</td>
-                    <td>${user.number}</td>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
                 </tr>
-            </c:forEach>
+            </thead>
+            <tbody>
+                <c:forEach items="${users}" var="user">
+                    <tr>
+                        <td>${user.firstName}</td>
+                        <td>${user.lastName}</td>
+                        <td>${user.email}</td>
+                        <td>${user.number}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+            
         </table>	
+        </div>
 
         <jsp:include page="components/footer.jsp" />
         

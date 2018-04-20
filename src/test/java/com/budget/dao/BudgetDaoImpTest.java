@@ -43,11 +43,11 @@ public class BudgetDaoImpTest {
 		assertNull(testUser);
 	}
 	
-	@Test
-	public void findAllUsersTest() {
-		List<User> allUsers = budgetService.findAllUsers();
-		assertEquals(5, allUsers.size());
-	}
+//	@Test
+//	public void findAllUsersTest() {
+//		List<User> allUsers = budgetService.findAllUsers();
+//		assertEquals(5, allUsers.size());
+//	}
 	
 	@Test
 	public void findUserByPhoneTest() {
@@ -55,13 +55,14 @@ public class BudgetDaoImpTest {
 		User testUser = budgetService.findUserByNumber(phone);
 		assertEquals("abrovo@gmail.com", testUser.getEmail());
 	}
-	@Test
-	public void deleteUserTest(){
-		User testUser = budgetService.findUser("mgardout@gmail.com", "gardoutpass");
-		budgetService.deleteUser(testUser);
-		User deletedUser = budgetService.findUser("mgardout@gmail.com", "gardoutpass");
-		assertNull(deletedUser);
-	}
+	
+//	@Test
+//	public void deleteUserTest(){
+//		User testUser = budgetService.findUser("mgardout@gmail.com", "gardoutpass");
+//		budgetService.deleteUser(testUser);
+//		User deletedUser = budgetService.findUser("mgardout@gmail.com", "gardoutpass");
+//		assertNull(deletedUser);
+//	}
 	
 	
 	@Test
@@ -112,15 +113,44 @@ public class BudgetDaoImpTest {
 	
 	//|||||||||||||||||||||||||||TEST RELATED TO CATEGORY|||||||||||||||||||||||||||
 	
+	@Test
+	public void findCategoryTest() {
+		String category = "DINNING";
+		Category catResult = budgetService.findCategory(category);
+		assertEquals(category, catResult.getName());
+	}
+	
+	@Test
+	public void saveCategoryTest() {
+		Category cat = new Category();
+		cat.setName("TEST");
+		budgetService.saveCategory(cat);
+		Category savedCat = budgetService.findCategory(cat.getName());
+		assertEquals(cat.getName(), savedCat.getName());
+				
+	}
 	
 	
 	//|||||||||||||||||||||||||||TEST RELATED TO BUDGET ENTRY|||||||||||||||||||||||||||
 	
+//	@Test
+//	public void findAllBudgetEntriesByCategory() {
+//		Category category = budgetService.findCategory("Dinning");
+//		List<BudgetEntry> entries = budgetService.findAllEntriesByCategory();
+//	}
+	
 	@Test
-	public void findAllBudgetEntriesByCategori() {
-		Category category = budgetService.findCategory("Dinning");
-		List<BudgetEntry> entries = budgetService.findAllEntriesByCategory();
+	public void findAllEntriesTest() {
+		List<BudgetEntry> bEntry = budgetService.findAllEntries();
+		assertEquals(11, bEntry.size());
 	}
+	
+//	@Test
+//	public void findEntriesByUserTest() {
+//		User user = budgetService.findUser("abrovo@gmail.com", "brabopass");
+//		List<Object[]> entries = budgetService.findEntriesByUser(user);
+//		assertEquals(4, entries.size());
+//	}
 
 
 }

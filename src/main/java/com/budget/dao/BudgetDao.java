@@ -18,10 +18,11 @@ public interface BudgetDao {
 	void deleteUser(User user);
 	
 	//CRUD operations related to the BudgetEntry class
-	List<Object[]> findEntriesByUser(User user);
+	List<Object[]> findEntriesByUser(User user);//
 	List<Object[]> findEntriesByUserDate(User user, Date date);
 	List<BudgetEntry> findAllEntries();
 	BudgetEntry saveBudgetEntry(BudgetEntry bEntry);
+//	List<Object[]> findBudgetEntryByCategory(Category category);
 	
 	//CRUD operations related to the Phone class
 	Phone savePhone(Phone phone);
