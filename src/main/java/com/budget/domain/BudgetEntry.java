@@ -23,7 +23,6 @@ import javax.persistence.TemporalType;
 @Table(name = "BUDGET_ENTRIES")
 public class BudgetEntry {
 	private long id;
-	private long user_id;
 	private User user;
 	private String description;
 	private Category category;
@@ -48,7 +47,6 @@ public class BudgetEntry {
 	}
 	
 	public void setUser(User user) {
-		this.user_id = user.getId();
 		this.user = user;
 	}
 	

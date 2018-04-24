@@ -13,6 +13,7 @@ public interface BudgetService {
 	//Related to User Class
 	User findUser(String email, String password);
 	User findUserByNumber(Phone number);
+	User findUserById(Long id);
 	User saveUser(User user);
 	List<User> findAllUsers();
 	void deleteUser(User user);
@@ -23,6 +24,7 @@ public interface BudgetService {
 	List<Object[]> findEntriesByUser(User user);
 	List<Object[]> findEntriesByUserDate(User user, Date date);
 	BudgetEntry saveBudgetEntry(BudgetEntry bEntry);
+	List<BudgetEntry> findEntriesByUserDateNoAggregation(User user, Date date);
 	//need to create a delete BE
 	
 	//Related to Phone Class

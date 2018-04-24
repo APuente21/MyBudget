@@ -15,11 +15,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.budget.domain.BudgetEntry;
 import com.budget.domain.Phone;
 import com.budget.domain.User;
 import com.budget.domain.User_Phone_Wrapper;
@@ -93,11 +95,21 @@ public class BudgetController {
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ModelAndView getUsers() {
         logger.info("Listing contacts");
-       
         List<User> users = budgetService.findAllUsers();
         logger.info("Listing contacts");
-      
         return new ModelAndView("list", "users", users);
+    }
+    
+    
+    //fix
+    @RequestMapping(value = "/user/{id}")
+    public ModelAndView getBudgetDetailsForUser(@PathVariable long id) {
+    	User user = budgetService.findUserById(id);
+    	Date d = new Date();
+        d.setDate(1);
+    	List<BudgetEntry> bEntries = budgetService.findEntriesByUserDateNoAggregation(user, d);
+    	return new ModelAndView("entrylist", "entries", bEntries);
+    	
     }
     
 	@Autowired(required=true)

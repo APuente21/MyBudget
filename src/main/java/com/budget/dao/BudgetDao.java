@@ -13,6 +13,7 @@ public interface BudgetDao {
 	//CRUD operations related to the User class
 	List<User> findAllUsers();
 	User findUser(String email, String password);
+	User findUserById(Long id);
 	User findUserByNumber(Phone number);
 	User saveUser(User user);
 	void deleteUser(User user);
@@ -22,6 +23,7 @@ public interface BudgetDao {
 	List<Object[]> findEntriesByUserDate(User user, Date date);
 	List<BudgetEntry> findAllEntries();
 	BudgetEntry saveBudgetEntry(BudgetEntry bEntry);
+	List<BudgetEntry> findEntriesByUserDateNoAggregation(User user, Date date);
 //	List<Object[]> findBudgetEntryByCategory(Category category);
 	
 	//CRUD operations related to the Phone class

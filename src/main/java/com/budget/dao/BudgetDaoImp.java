@@ -45,6 +45,14 @@ public class BudgetDaoImp implements BudgetDao {
                 .uniqueResult();
 	}
 	
+	public User findUserById(Long id) {
+		return (User) sessionFactory.getCurrentSession()
+                .getNamedQuery("User.findUserById")
+                .setParameter("id", id)
+                .uniqueResult();
+	}
+	
+	
 	public User findUser(String email, String password) {
 		return (User) sessionFactory.getCurrentSession()
                 .getNamedQuery("User.findUser")
@@ -91,6 +99,19 @@ public class BudgetDaoImp implements BudgetDao {
     	
     	return result;
 	}
+	
+	//Retrievies current months budgetEntries for a user,
+    @SuppressWarnings("unchecked")
+	public List<BudgetEntry> findEntriesByUserDateNoAggregation(User user, Date date) {
+    	Session session= sessionFactory.getCurrentSession();
+    	List result = session.createCriteria(BudgetEntry.class)
+    			.add(Restrictions.eq("user", user))
+    			.add(Restrictions.ge("date", date))
+    	.list();
+    	
+    	return result;
+	}
+	
 	
     
 	@SuppressWarnings("unchecked")

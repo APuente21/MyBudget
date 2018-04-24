@@ -37,6 +37,10 @@ public class BudgetServiceImp implements BudgetService {
 		return this.budgetDao.findUser(email, password);
 	}
 	
+	public User findUserById(Long id) {
+		return this.budgetDao.findUserById(id);
+	}
+	
 	@Transactional
 	public void deleteUser(User user) {
 		this.budgetDao.deleteUser(user);
@@ -65,6 +69,10 @@ public class BudgetServiceImp implements BudgetService {
 		return this.budgetDao.findEntriesByUserDate(user, date);
 	}
 	
+	@Transactional
+	public List<BudgetEntry> findEntriesByUserDateNoAggregation(User user, Date date) {
+		return this.budgetDao.findEntriesByUserDateNoAggregation(user, date);
+	}
 	
 	@Transactional
 	public BudgetEntry saveBudgetEntry(BudgetEntry bEntry) {

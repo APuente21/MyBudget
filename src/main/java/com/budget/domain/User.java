@@ -22,7 +22,9 @@ import javax.persistence.Table;
 @NamedQuery(name="User.findUser", 
 query="select u from User u where u.email = :email and u.password = :password"),
 @NamedQuery(name="User.findUserByNumber", 
-query="select u from User u where u.number = :number")
+query="select u from User u where u.number = :number"),
+@NamedQuery(name="User.findUserById", 
+query="select u from User u where u.id = :id")
 })
 @Table(name = "USERS")
 public class User {

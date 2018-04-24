@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
 import com.budget.domain.User;
 import com.budget.ser.BudgetService;
 import com.budget.validator.LogInFormValidator;
@@ -44,7 +46,7 @@ public class LogInController {
     	 return new ModelAndView("home", "user", new User());
     }
    
-
+    
     @RequestMapping (method = RequestMethod.POST)
     public String logInCheck(@Valid @ModelAttribute("user")User user, 
     	BindingResult result, ModelMap model) {
@@ -54,14 +56,14 @@ public class LogInController {
     	User reguisteredUser = budgetService.findUser(user.getEmail(), user.getPassword());    	   
     	    
     	if (reguisteredUser != null) {
-    		return "redirect:/users";
+    		return "redirect:/users/" + reguisteredUser.getId();
     	}
     	else {
     	    	result.rejectValue("number", "Incorrect.logInForm.password", "Incorrect username/password");
     	  	return "home";
     	}
-    	    	
     }
+    
     
 	@Autowired(required=true)
 	@Qualifier(value="budgetService")
