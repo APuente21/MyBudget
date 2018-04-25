@@ -13,7 +13,7 @@ public interface BudgetService {
 	//Related to User Class
 	User findUser(String email, String password);
 	User findUserByNumber(Phone number);
-	User findUserById(Long id);
+	User findUserById(int id);
 	User saveUser(User user);
 	List<User> findAllUsers();
 	void deleteUser(User user);

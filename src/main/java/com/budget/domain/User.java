@@ -28,7 +28,7 @@ query="select u from User u where u.id = :id")
 })
 @Table(name = "USERS")
 public class User {
-	private long id;
+	private int id;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -38,14 +38,14 @@ public class User {
 	
 	public User(){	}
 	
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
 	@Id
 	@GeneratedValue(strategy = IDENTITY) 
     @Column(name = "ID")
-	public Long getId() {
+	public int getId() {
 		return this.id;
 	}
 	

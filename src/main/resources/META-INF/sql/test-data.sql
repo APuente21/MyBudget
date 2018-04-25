@@ -17,15 +17,16 @@ insert into USERS (first_name, last_name, email, password, phone_id) values ('Me
 insert into USERS (first_name, last_name, email, password, phone_id) values ('Chris', 'Pine', 'cpine@gmail.com', 'pinepass', 3);
 insert into USERS (first_name, last_name, email, password, phone_id) values ('Armie', 'Hammer', 'ahammer@gmail.com', 'hammerpass', 4);
 
-insert into BUDGET_ENTRIES(user_id, category_id, description, amount, entry_date) values(1,3,'test1',500,'2017-10-26');
+insert into BUDGET_ENTRIES(user_id, category_id, description, amount, entry_date) values(1,3,'test1',500,'2018-04-12');
 insert into BUDGET_ENTRIES(user_id, category_id, description, amount, entry_date) values(3,2,'test2',50,'2017-10-25');
 insert into BUDGET_ENTRIES(user_id, category_id, description, amount, entry_date) values(2,4,'test3',250,'2017-10-24');
 insert into BUDGET_ENTRIES(user_id, category_id, description, amount, entry_date) values(4,1,'test4',10,'2017-10-01');
-insert into BUDGET_ENTRIES(user_id, category_id, description, amount, entry_date) values(1,5,'test5',5000,'2017-10-13');
+insert into BUDGET_ENTRIES(user_id, category_id, description, amount, entry_date) values(1,5,'test5',5000,'2018-04-13');
 insert into BUDGET_ENTRIES(user_id, category_id, description, amount, entry_date) values(5,1,'test6',5250,'2017-10-02');
 insert into BUDGET_ENTRIES(user_id, category_id, description, amount, entry_date) values(5,1,'test7',120,'2017-10-30');
 insert into BUDGET_ENTRIES(user_id, category_id, description, amount, entry_date) values(1,2,'test8',30,'2017-10-10');
 insert into BUDGET_ENTRIES(user_id, category_id, description, amount, entry_date) values(2,3,'test9',870,'2017-10-05');
 insert into BUDGET_ENTRIES(user_id, category_id, description, amount, entry_date) values(1,3,'test10',220,'2017-10-26');
 insert into BUDGET_ENTRIES(user_id, category_id, description, amount, entry_date) values(4,4,'test11',1000,'2017-10-26');
+
 

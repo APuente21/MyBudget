@@ -37,7 +37,8 @@ public class BudgetServiceImp implements BudgetService {
 		return this.budgetDao.findUser(email, password);
 	}
 	
-	public User findUserById(Long id) {
+	@Transactional
+	public User findUserById(int id) {
 		return this.budgetDao.findUserById(id);
 	}
 	

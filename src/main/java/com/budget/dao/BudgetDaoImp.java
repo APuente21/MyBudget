@@ -45,7 +45,7 @@ public class BudgetDaoImp implements BudgetDao {
                 .uniqueResult();
 	}
 	
-	public User findUserById(Long id) {
+	public User findUserById(int id) {
 		return (User) sessionFactory.getCurrentSession()
                 .getNamedQuery("User.findUserById")
                 .setParameter("id", id)

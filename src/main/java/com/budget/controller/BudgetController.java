@@ -102,15 +102,15 @@ public class BudgetController {
     
     
     //fix
-    @RequestMapping(value = "/user/{id}")
-    public ModelAndView getBudgetDetailsForUser(@PathVariable long id) {
-    	User user = budgetService.findUserById(id);
-    	Date d = new Date();
-        d.setDate(1);
-    	List<BudgetEntry> bEntries = budgetService.findEntriesByUserDateNoAggregation(user, d);
-    	return new ModelAndView("entrylist", "entries", bEntries);
-    	
-    }
+//    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+//    public ModelAndView getBudgetDetailsForUser(@PathVariable long id) {
+//    	//System.out.println(id);
+//    	User user = budgetService.findUserById(id);
+//    	Date d = new Date();
+//        d.setDate(1);
+//    	List<BudgetEntry> bEntries = budgetService.findEntriesByUserDateNoAggregation(user, d);
+//    	return new ModelAndView("entrylist", "entries", bEntries);
+//    }
     
 	@Autowired(required=true)
 	@Qualifier(value="budgetService")

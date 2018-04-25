@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Date;
 import java.util.List;
 import org.mockito.Mockito.*;
 import org.junit.Before;
@@ -41,6 +42,13 @@ public class BudgetDaoImpTest {
 	public void findUserNotInDBTest() {
 		User testUser = budgetService.findUser("missing@gmail.com", "empty");
 		assertNull(testUser);
+	}
+	
+	
+	@Test
+	public void findUserByIdTest() {
+		User user = budgetService.findUserById(1);
+		assertEquals("Andres", user.getFirstName());
 	}
 	
 //	@Test
@@ -143,6 +151,16 @@ public class BudgetDaoImpTest {
 	public void findAllEntriesTest() {
 		List<BudgetEntry> bEntry = budgetService.findAllEntries();
 		assertEquals(11, bEntry.size());
+	}
+	
+	@Test
+	public void findEntriesByUserDateAndNoAggregation() {
+		User user = budgetService.findUserById(1);
+		Date d = new Date();
+		d.setDate(1);
+		List<BudgetEntry> entries = budgetService.findEntriesByUserDateNoAggregation(user, d);
+		
+		d.setDate(2);
 	}
 	
 //	@Test
