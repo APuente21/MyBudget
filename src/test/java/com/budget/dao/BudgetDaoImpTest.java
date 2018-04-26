@@ -150,7 +150,7 @@ public class BudgetDaoImpTest {
 	@Test
 	public void findAllEntriesTest() {
 		List<BudgetEntry> bEntry = budgetService.findAllEntries();
-		assertEquals(11, bEntry.size());
+		assertEquals(12, bEntry.size());
 	}
 	
 	@Test
@@ -159,8 +159,8 @@ public class BudgetDaoImpTest {
 		Date d = new Date();
 		d.setDate(1);
 		List<BudgetEntry> entries = budgetService.findEntriesByUserDateNoAggregation(user, d);
+		assertEquals(3, entries.size());
 		
-		d.setDate(2);
 	}
 	
 //	@Test

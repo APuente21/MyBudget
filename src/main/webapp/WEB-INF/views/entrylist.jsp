@@ -12,25 +12,25 @@
     <body>
 
         <div class="container">
-            <h1>All Users</h1>
+            <h1>This months details</h1>
         
 
         <table class="table" width="50%">
             <thead class="thead-dark">
                 <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Amount</th>
                 </tr>
             </thead>
             <tbody>
                 <c:forEach items="${entries}" var="entry">
                     <tr>
-                        <td>${user.firstName}</td>
-                        <td>${user.lastName}</td>
-                        <td>${user.email}</td>
-                        <td>${user.number}</td>
+                        <td>${entry.date}</td>
+                        <td>${entry.category.name}</td>
+                        <td>${entry.description}</td>
+                        <td>${entry.amount}</td>
                     </tr>
                 </c:forEach>
             </tbody>
